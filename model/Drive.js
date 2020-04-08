@@ -99,20 +99,25 @@ function authorize(credentials, token, callback, url = '') {
 
 function uploadFile(auth, url = '') {
 
+   
 
     Axios({
         method: "GET",
         url: url,
         responseType: 'stream'
     }).then(response => {
+        data = response.data;
+
+
+        headers = response.headers;
 
         const drive = google.drive({ version: 'v3', auth });
         var fileMetadata = {
             'name': getName(url)
         };
         var media = {
-            mimeType: response.data.headers['content-type'],
-            body: response.data
+            mimeType: headers['content-type'],
+            body: data
         };
         drive.files.create({
             resource: fileMetadata,
@@ -125,6 +130,11 @@ function uploadFile(auth, url = '') {
             } else {
                 console.log('File Id: ', res.data.id);
             }
+        });
+
+        size = headers['content-length']
+        data.on('data',chunk=>{
+            console.log(chunk.length / size *100 );
         });
     });
 
