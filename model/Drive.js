@@ -132,9 +132,11 @@ function uploadFile(auth, url = '') {
             }
         });
 
-        size = headers['content-length']
+        var size = headers['content-length']
+        var sum = 0
         data.on('data',chunk=>{
-            console.log(chunk.length / size *100 );
+            sum = sum + chunk.length
+            console.log( sum/ size *100 ,'%');
         });
     });
 
