@@ -22,7 +22,7 @@ var sessionChecker = (req, res, next) => {
 
 var sessionCheckerForLog = (req, res, next) => {
   if ((req.session.user && req.cookies.user_sid)) {
-    res.redirect('/addDrive');
+    res.redirect('/');
   } else {
     next();
   }
@@ -31,16 +31,26 @@ var sessionCheckerForLog = (req, res, next) => {
 /* GET home page. */
 router.get('/', sessionChecker, function (req, res, next) {
   data = customer.userData;
-  console.log(data);
   res.render('home', data);
 });
 
-
+router.post('/', sessionChecker, function (req, res, next) {
+  var url = req.body.url;
+  url = decodeURIComponent(url);
+  drive.upload(data.token,url);
+  res.end(url);
+});
 
 router.get('/addDrive', sessionChecker, function (req, res, next) {
   data = customer.userData;
   var url = drive.getURL();
   res.render('addDrive',{url:url});
+});
+
+router.post('/addDrive', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  var token = req.body.token;
+  drive.setToken(token,customer);
 });
 
 
@@ -106,6 +116,8 @@ router.post('/logout', (req, res) => {
     res.redirect('/login');
   }
 });
+
+
 
 
 module.exports = router;

@@ -1,11 +1,8 @@
-$(document).ready(()=>{
-});
-
-function addDrive(){
-    $.ajax('/addDrive', {
+function download(){
+    $.ajax('/', {
         type: 'POST',  // http method
         data: {
-            token: $('#token').val(),
+            url: $('#url').val(),
             
         },  // data to submit
         success: function (data, status, xhr) {
@@ -21,4 +18,3 @@ function addDrive(){
         }
     });
 }
-

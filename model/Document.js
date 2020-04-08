@@ -1,7 +1,5 @@
 const db = require('./db');
-var Drive = require('../model/Drive');
 
-var drive = new Drive();
 
 class Document {
     constructor() {
@@ -9,19 +7,23 @@ class Document {
     }
     saveToken(token, customer) {
         //console.log(data);
-
         db.update('customer', customer.userData.email, {
             token: token
         });
-
-
-
         //save a ref in coustomer db
     }
 
-
+    getToken = async function (id) {
+        var dataOut;
+        
+        await db.get('customer', id).then((data) => {
+            console.log(data);
+            dataOut = data.token;
+        });
+        return dataOut;
+    }
     
-    readDocument = async function (id) {
+    /* readDocument = async function (id) {
         var dataOut;
         await db.get('document', id).then((data) => {
             dataOut = data.document;
@@ -43,7 +45,7 @@ class Document {
             });;
         }
         return dataOut
-    }
+    } */
 }
 
 module.exports = Document;

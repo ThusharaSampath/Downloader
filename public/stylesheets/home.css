@@ -1,0 +1,15 @@
+
+  
+  .tableWrapper{
+    margin-top: 3%;
+    padding: 2%;
+    width: 100%;
+  }
+
+
+  @media screen and (min-width: 600px) {
+    .tableWrapper{
+        margin-top: 5%;
+
+      }
+  }
