@@ -37,20 +37,26 @@ router.get('/', sessionChecker, function (req, res, next) {
 router.post('/', sessionChecker, function (req, res, next) {
   var url = req.body.url;
   url = decodeURIComponent(url);
-  drive.upload(data.token,url);
-  res.end(url);
+  drive.upload(data.token, {
+    url: url,
+    email: customer.userData.email
+  });
+  res.json({
+    name: getName(url),
+    email: customer.userData.email
+  });
 });
 
 router.get('/addDrive', sessionChecker, function (req, res, next) {
   data = customer.userData;
   var url = drive.getURL();
-  res.render('addDrive',{url:url});
+  res.render('addDrive', { url: url });
 });
 
 router.post('/addDrive', sessionChecker, function (req, res, next) {
   data = customer.userData;
   var token = req.body.token;
-  drive.setToken(token,customer);
+  drive.setToken(token, customer);
 });
 
 
@@ -117,6 +123,15 @@ router.post('/logout', (req, res) => {
   }
 });
 
+
+function getName(url) {
+  var arr = url.split('/');
+  name_ = arr[arr.length - 1];
+
+  arr = name_.split('\\');
+  name = arr[arr.length - 1];
+  return name
+}
 
 
 

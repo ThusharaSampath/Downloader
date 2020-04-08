@@ -2,6 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const { google } = require('googleapis');
 
+var chat = require('../chat/chat');
 const Axios = require('axios');
 
 //Drive API, v3
@@ -72,7 +73,7 @@ class Drive {
         });
     }
 
-    upload(token, url) {
+    upload(token, params) {
 
 
         fs.readFile('config/credentials.json', (err, content) => {
@@ -80,12 +81,12 @@ class Drive {
             // Authorize a client with credentials, then call the Google Drive API.
             //authorize(JSON.parse(content), email, listFiles);
             //authorize(JSON.parse(content),email, getFile);
-            authorize(JSON.parse(content), token, uploadFile, url);
+            authorize(JSON.parse(content), token, uploadFile, params);
         });
     }
 }
 
-function authorize(credentials, token, callback, url = '') {
+function authorize(credentials, token, callback, params = {}) {
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(
         client_id, client_secret, redirect_uris[0]);
@@ -93,14 +94,12 @@ function authorize(credentials, token, callback, url = '') {
     // Check if we have previously stored a token.
 
     oAuth2Client.setCredentials(token);
-    callback(oAuth2Client, url);
+    callback(oAuth2Client, params);
 
 }
 
-function uploadFile(auth, url = '') {
-
-   
-
+function uploadFile(auth, params = {}) {
+    url = params.url
     Axios({
         method: "GET",
         url: url,
@@ -136,7 +135,9 @@ function uploadFile(auth, url = '') {
         var sum = 0
         data.on('data',chunk=>{
             sum = sum + chunk.length
-            console.log( sum/ size *100 ,'%');
+            progress = sum/ size *100 ;
+            chat.to(params.email,'status',{progress:progress,fileName : getName(url)});
+            console.log(progress);
         });
     });
 
