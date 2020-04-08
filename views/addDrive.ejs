@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/stylesheets/addDrive.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/addDrive.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+    <%-include('nav.ejs',data)-%>
+    <div class="tableWrapper">
+        <%-include('nav.ejs',data)-%>
+        <a href='<%=url%>' target='_blank'>click here</a>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -7,8 +7,6 @@ class Customer {
     this.loggedIn = false;
   }
 
-
-
   async signUp(data) {
     data.password = passwordHash.generate(data.password);
     var saved = false;

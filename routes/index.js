@@ -10,19 +10,19 @@ var document = new Document();
 var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
+
   if (!(req.session.user && req.cookies.user_sid)) {
     res.redirect('/login');
   } else {
     customer.logBySession(req.session.userName).then(() => {
       next();
     });
-
   }
 };
 
 var sessionCheckerForLog = (req, res, next) => {
   if ((req.session.user && req.cookies.user_sid)) {
-    res.redirect('/');
+    res.redirect('/addDrive');
   } else {
     next();
   }
@@ -31,28 +31,16 @@ var sessionCheckerForLog = (req, res, next) => {
 /* GET home page. */
 router.get('/', sessionChecker, function (req, res, next) {
   data = customer.userData;
-
-  //drive.getAFile("rtCcxficW3mcvuJkf9Wj");
-
+  console.log(data);
   res.render('home', data);
 });
 
 
 
-
-router.post('/details', function (req, res, next) {
+router.get('/addDrive', sessionChecker, function (req, res, next) {
   data = customer.userData;
-
-  reqData = {};
-  res.setHeader('Content-Type', 'application/json');
-  console.log(typeof(data.documents) != 'undefined');
-  if (typeof(data.documents) != 'undefined'){
-    document.readDocumentDetails(Object.keys(data.documents)).then(data => {
-      console.log(data);
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(data, null, 3));
-    });
-  }
+  var url = drive.getURL();
+  res.render('addDrive',{url:url});
 });
 
 

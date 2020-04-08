@@ -5,12 +5,10 @@ var serviceAccount = require("../config/config.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://print-73d74.firebaseio.com",
-    storageBucket: "print-73d74.appspot.com"
-});
+    databaseURL: "https://downloader-fba29.firebaseio.com"
+  });
 
 const db = admin.firestore();
-var bucket = admin.storage().bucket();
 
 const save = function (collection, document, data) {
     return db.collection(collection).doc(document).set(data).then(() => {

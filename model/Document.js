@@ -7,26 +7,20 @@ class Document {
     constructor() {
         this.loggedIn = false;
     }
-    saveDocument(data, file, customer) {
+    saveToken(token, customer) {
         //console.log(data);
 
-
-        db.push("documentDetails", data).then(id => {
-            var data = {}
-            data[id] = 'shop id'
-            db.update('customer', customer.userData.email, { documents: data });
-            console.log("saving");
-
-            drive.uploadFile(file, id);
-            db.update("documentDetails", id, {
-                fileName: file.name
-            });
-            console.log("saved");
+        db.update('customer', customer.userData.email, {
+            token: token
         });
+
 
 
         //save a ref in coustomer db
     }
+
+
+    
     readDocument = async function (id) {
         var dataOut;
         await db.get('document', id).then((data) => {
