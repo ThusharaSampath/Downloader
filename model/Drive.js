@@ -136,7 +136,10 @@ function uploadFile(auth, params = {}) {
         data.on('data',chunk=>{
             sum = sum + chunk.length
             progress = sum/ size *100 ;
-            chat.to(params.email,'status',{progress:progress,fileName : getName(url)});
+            if(progress%1==0){
+                chat.to(params.email,'status',{progress:progress,fileName : getName(url)});
+            }
+            
             console.log(progress);
         });
     });
