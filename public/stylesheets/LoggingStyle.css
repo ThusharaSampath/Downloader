@@ -1,0 +1,122 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.sidenav {
+    height: 107%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 10px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .signUp-form{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 80%;
+        
+    }
+
+    .signUp-form{
+        margin-top: 20%;
+    }
+}
+
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}
+
+svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+    stroke: white;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: rgb(184, 184, 184);
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: rgb(255, 255, 255);
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: rgb(167, 167, 167);
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: white;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}

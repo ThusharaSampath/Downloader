@@ -1,0 +1,69 @@
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="/stylesheets/LoggingStyle.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="/javascripts/signUp.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+
+
+  <div class="main">
+    <div class="col-md-6 col-sm-12">
+      <div class="signUp-form">
+
+        <div class="form-group">
+          <label>Email</label>
+          <input id="email" type="text" class="form-control" placeholder="Sherlockholems@gmail.com">
+        </div>
+
+        <div class="form-group">
+          <label>First Name</label>
+          <input id="fname" type="text" class="form-control" placeholder="Sherlock">
+        </div>
+
+        <div class="form-group">
+          <label>Last Name</label>
+          <input id="lname" type="text" class="form-control" placeholder="Holmes">
+        </div>
+
+        <div class="form-group">
+          <label>Telephone Number</label>
+          <input id="tp" type="text" class="form-control" placeholder="07********">
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input id="password" type="password" class="form-control" placeholder="Password">
+        </div>
+
+        
+
+        <button id="login" class="btn btn-secondary" onclick="location.href = '/login';">LogIn</button>
+        <button class="btn btn-black" id=signup onclick='signUp()'>Sign Up</button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sidenav">
+    <svg viewBox="0 0 960 300">
+      <symbol id="s-text">
+        <text text-anchor="middle" x="50%" y="80%">Welcome</text>
+      </symbol>
+
+      <g class="g-ants">
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+      </g>
+    </svg>
+  </div>
+
+</body>

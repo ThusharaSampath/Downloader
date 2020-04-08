@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/stylesheets/home.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/home.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!------ Include the above in your HEAD tag ---------->
+  </head>
+  <body>
+    <%-include('nav.ejs',data)-%>
+    <div class="tableWrapper">
+    <table>
+      <caption>Statement Summary</caption>
+      <thead>
+        <tr>
+          <th scope="col">File</th>
+          <th scope="col">Shop</th>
+          <th scope="col">Side</th>
+          <th scope="col">Size</th>
+          <th scope="col">Comment</th>
+        </tr>
+      </thead>
+      <tbody id="tableData">
+
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>
