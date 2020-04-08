@@ -202,6 +202,9 @@ function getFile(auth, fileId) {
 
 
 function getName(url) {
+
+    var url = url.split('?')[0];
+
     var arr = url.split('/');
     name_ = arr[arr.length - 1];
 
