@@ -141,9 +141,10 @@ function uploadFile(auth, params = {}) {
             if(progress>=p){
                 p = p+1
                 chat.to(params.email,'status',{progress:progress,fileName : getName(url)});
+                console.log(progress);
             }
             
-            console.log(progress);
+           
         });
     });
 
