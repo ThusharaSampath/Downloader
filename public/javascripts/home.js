@@ -1,9 +1,8 @@
 $(document).ready(() => {
     socket = io();
     socket.on('status', (data) => {
-        $('#p_'+data.fileName).css('width',data.progress+'%');
+        $('#p_'+formatName(data.fileName)).css('width',data.progress+'%');
     });
-
 });
 
 function download(){
@@ -15,7 +14,7 @@ function download(){
         success: function (data, status, xhr) {
             //console.log(data);
             socket.emit('join',data.email);
-            createStatusBar(data.name);
+            createStatusBar(formatName(data.name));
             /* if(data.logged){
                 window.location.replace("/login");
             }else{
@@ -36,4 +35,8 @@ function createStatusBar(name){
     aria-valuemin="0" aria-valuemax="100" id='p_${name}'></div>
     </div>`
     $('#progress_wrapper').html($('#progress_wrapper').val()+html);
+}
+
+function formatName(name){
+    return name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 }
