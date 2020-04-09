@@ -1,6 +1,7 @@
 $(document).ready(() => {
     socket = io();
     socket.on('status', (data) => {
+        console.log(data);
         $('#p_'+formatName(data.fileName)).css('width',data.progress+'%');
     });
 });
