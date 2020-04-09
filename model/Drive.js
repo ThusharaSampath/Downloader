@@ -131,16 +131,18 @@ function uploadFile(auth, params = {}) {
             }
         });
 
-        var size = headers['content-length']
-        var sum = 0
+        var size = headers['content-length'];
+        var sum = 0;
         var p = 0;
+        var name =getName(url);
+
         data.on('data', chunk => {
             sum = sum + chunk.length
             progress = sum / size * 100;
             if (progress >= p) {
                 p = p + 1
-                chat.to(params.email, 'status', { progress: progress, fileName: getName(url) });
-                console.log(progress,getName(url));
+                chat.to(params.email, 'status', { progress: progress, fileName:  name});
+                console.log(progress,name);
             }
         });
     });
