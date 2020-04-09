@@ -75,7 +75,6 @@ class Drive {
 
     upload(token, params) {
 
-        console.log(token);
 
         fs.readFile('config/credentials.json', (err, content) => {
             if (err) return console.log('Error loading client secret file:', err);

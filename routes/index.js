@@ -35,6 +35,7 @@ router.get('/', sessionChecker, function (req, res, next) {
 });
 
 router.post('/', sessionChecker, function (req, res, next) {
+  data = customer.userData;
   var url = req.body.url;
   url = decodeURIComponent(url);
   drive.upload(data.token, {
