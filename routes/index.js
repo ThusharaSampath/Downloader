@@ -54,10 +54,16 @@ router.get('/addDrive', sessionChecker, function (req, res, next) {
   res.render('addDrive', { url: url });
 });
 
+router.get('/HowTo', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  res.render('HowTo', data);
+});
+
 router.post('/addDrive', sessionChecker, function (req, res, next) {
   data = customer.userData;
   var token = req.body.token;
   drive.setToken(token, customer);
+  res.end('done');
 });
 
 

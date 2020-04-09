@@ -99,7 +99,7 @@ function authorize(credentials, token, callback, params = {}) {
 }
 
 function uploadFile(auth, params = {}) {
-    url = params.url
+    var url = params.url
     Axios({
         method: "GET",
         url: url,

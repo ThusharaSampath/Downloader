@@ -7,6 +7,7 @@ $(document).ready(() => {
 });
 
 function download(){
+    if($('#url').val()=='') return 0;
     $.ajax('/', {
         type: 'POST',  // http method
         data: {

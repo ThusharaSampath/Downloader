@@ -14,14 +14,16 @@
 <body>
     <%-include('nav.ejs',data)-%>
     <div class="tableWrapper">
-        <a href='<%=url%>' target='_blank'>click here</a>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" class="form-control" placeholder="Token" aria-label="Recipient's username"
                 aria-describedby="basic-addon2" id='token'>
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" onclick="addDrive()">Button</button>
+                <button class="btn btn-outline-secondary" type="button" onclick="addDrive()">Submit</button>
             </div>
         </div>
+        <a href='<%=url%>' target='_blank' type="button" class="btn btn-primary btn-lg btn-block">
+            <span class="glyphicon glyphicon-plus-sign"> Generate A Token </span>
+        </a>
     </div>
 </body>
 

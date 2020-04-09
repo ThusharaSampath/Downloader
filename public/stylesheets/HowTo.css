@@ -1,0 +1,26 @@
+
+  
+  .tableWrapper{
+    margin-top: 3%;
+    padding: 2%;
+    width: 100%;
+  }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 60vh;
+  }
+
+
+  @media screen and (max-width: 750px) {
+    .tableWrapper{
+        margin-top: 12%;
+      }
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 35vh;
+      }
+  }
