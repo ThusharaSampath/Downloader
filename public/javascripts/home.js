@@ -1,7 +1,7 @@
 $(document).ready(() => {
     socket = io();
     socket.on('status', (data) => {
-        $('#prbr').css('width',data.progress+'%');
+        $('#p_'+data.fileName).css('width',data.progress+'%');
     });
 
 });
