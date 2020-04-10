@@ -8,10 +8,14 @@ $(document).ready(() => {
 
 function download(){
     if($('#url').val()=='') return 0;
+
+    console.log($('#isVideo').prop("checked"));
+
     $.ajax('/', {
         type: 'POST',  // http method
         data: {
-            url: $('#url').val()
+            url: $('#url').val(),
+            isVideo : $('#isVideo').prop("checked")
         },  // data to submit
         success: function (data, status, xhr) {
             //console.log(data);

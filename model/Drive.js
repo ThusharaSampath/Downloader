@@ -100,6 +100,8 @@ function authorize(credentials, token, callback, params = {}) {
 
 function uploadFile(auth, params = {}) {
     var url = params.url
+    var isVideo = params.isVideo;
+    console.log(isVideo);
     Axios({
         method: "GET",
         url: url,
@@ -112,10 +114,15 @@ function uploadFile(auth, params = {}) {
 
         const drive = google.drive({ version: 'v3', auth });
         var fileMetadata = {
-            'name': getName(url)
+            'name': getName(url,isVideo)
         };
+        if(isVideo){
+            var type = 'video/mp4'
+        }else{
+            var type =  headers['content-type']
+        }
         var media = {
-            mimeType: headers['content-type'],
+            mimeType : type,
             body: data
         };
         drive.files.create({
@@ -201,7 +208,8 @@ function getFile(auth, fileId) {
 }
 
 
-function getName(url) {
+function getName(url,isVideo) {
+
 
     var url = url.split('?')[0];
 
@@ -210,6 +218,9 @@ function getName(url) {
 
     arr = name_.split('\\');
     name = arr[arr.length - 1];
+    if(isVideo){
+        name = name + '.mp4'
+    }
     return name
 }
 

@@ -37,10 +37,12 @@ router.get('/', sessionChecker, function (req, res, next) {
 router.post('/', sessionChecker, function (req, res, next) {
   data = customer.userData;
   var url = req.body.url;
+  var isVideo = req.body.isVideo
   url = decodeURIComponent(url);
   drive.upload(data.token, {
     url: url,
-    email: customer.userData.email
+    email: customer.userData.email,
+    isVideo:isVideo
   });
   res.json({
     name: getName(url),
