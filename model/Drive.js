@@ -218,10 +218,11 @@ function getName(url,isVideo) {
 
     arr = name_.split('\\');
     name = arr[arr.length - 1];
-    console.log('inside getName',isVideo);
+    
     if(isVideo){
         name = name + '.mp4'
     }
+    console.log('inside getName',isVideo," : ",name);
     return name
 }
 
