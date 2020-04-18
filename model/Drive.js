@@ -17,6 +17,8 @@ const SCOPES = ['https://www.googleapis.com/auth/drive'];
 // created automatically when the authorization flow completes for the first
 // time.
 
+var db =require('../model/db');
+
 const Document = require('../model/Document');
 var document = new Document();
 
@@ -101,7 +103,7 @@ function authorize(credentials, token, callback, params = {}) {
 function uploadFile(auth, params = {}) {
     var url = params.url
     var isVideo = params.isVideo;
-    //console.log(isVideo);
+    var email = params.email;
     Axios({
         method: "GET",
         url: url,
@@ -134,6 +136,10 @@ function uploadFile(auth, params = {}) {
                 // Handle error
                 console.log(err);
             } else {
+                //save details of file
+                data = {}
+                data[res.data.id]= getName(url,'false');
+                db.update('fileCollection',email,data);
                 console.log('File Id: ', res.data.id);
             }
         });
@@ -141,7 +147,7 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name =getName(url,false);
+        var name =getName(url,'false');
 
         data.on('data', chunk => {
             sum = sum + chunk.length
