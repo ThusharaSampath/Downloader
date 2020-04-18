@@ -65,16 +65,25 @@ class Drive {
 
     }
 
-    getFiles(email) {
-        db.getToken(email).then(token => {
-            fs.readFile('config/credentials.json', (err, content) => {
-                if (err) return console.log('Error loading client secret file:', err);
-                // Authorize a client with credentials, then call the Google Drive API.
-                authorize(JSON.parse(content), token, listFiles);
-                //authorize(JSON.parse(content), getFile);
-                //authorize(JSON.parse(content), uploadFile);
-            });
+    async getFiles(email) {
+        var result = []
+        await db.getToken(email).then(async token => {
+            var content = fs.readFileSync('config/credentials.json');
+
+            const { client_secret, client_id, redirect_uris } = JSON.parse(content).installed;
+            const oAuth2Client = new google.auth.OAuth2(
+                client_id, client_secret, redirect_uris[0]);
+
+            // Check if we have previously stored a token.
+
+            oAuth2Client.setCredentials(token);
+            await listFiles(oAuth2Client).then(data => {
+                result = data
+            })
+
         });
+        return result;
+
     }
 
     upload(token, params) {
@@ -168,17 +177,21 @@ function uploadFile(auth, params = {}) {
 }
 
 
-function listFiles(auth, url = '') {
+async function listFiles(auth, url = '') {
     const drive = google.drive({ version: 'v3', auth });
-    getList(drive, '');
+    var result = []
+    await getList(drive, '').then(data => {
+        result = data
+    })
+    return result;
 }
 
 async function getList(drive, pageToken) {
     var result = []
     await drive.files.list({
         //corpora: 'user',
-        pageSize: 1000,
-        //q: "name='elvis233424234'",
+        pageSize: 100,
+        q: "mimeType='video/x-matroska' or mimeType='video/mp4'",
         pageToken: pageToken ? pageToken : '',
         fields: 'nextPageToken, files(*)',
     }).then(async (res) => {
@@ -188,11 +201,10 @@ async function getList(drive, pageToken) {
             var data = processList(files);
             if (res.data.nextPageToken) {
                 await getList(drive, res.data.nextPageToken).then(d => {
-
                     result = d.concat(data);
-
                 })
-
+            } else {
+                result = data;
             }
             // files.map((file) => {
             //     console.log(`${file.name} (${file.id})`);
@@ -202,7 +214,6 @@ async function getList(drive, pageToken) {
         }
 
     });
-    console.log("return result",result.length);
     return result
 }
 

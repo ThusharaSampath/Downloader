@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/stylesheets/home.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/home.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+    <%files.forEach(file=>{%>
+    <div class="card" style="width: 12rem; float:left; margin: 2px;">
+        <img class="card-img-top" src=<%=file.thumbnail%> alt="Card image cap">
+        <div class="card-body">
+            <a href='<%=file.url_view%>' target="_blank" class="card-text"><%=file.name%></a>
+        </div>
+    </div>
+    <%});%>
+</body>
+
+</html>

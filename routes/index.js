@@ -72,10 +72,13 @@ router.get('/getFiles', function (req, res, next) {
   document.getFiles().then(data => {
     data.forEach(file => {
       if (file.id == 'iitjeecoc@gmail.com') {
-        drive.getFiles(file.id);
+        drive.getFiles(file.id).then(files => {
+          res.render('getFiles', {
+            files: files
+          });
+        });
       }
     });
-    res.end("ok");
   });
 
 });
