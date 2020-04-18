@@ -141,7 +141,7 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name =getName(url,isVideo);
+        var name =getName(url,false);
 
         data.on('data', chunk => {
             sum = sum + chunk.length
