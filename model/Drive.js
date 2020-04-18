@@ -141,7 +141,7 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name =getName(url);
+        var name =getName(url,isVideo);
 
         data.on('data', chunk => {
             sum = sum + chunk.length
@@ -219,7 +219,7 @@ function getName(url,isVideo) {
     arr = name_.split('\\');
     name = arr[arr.length - 1];
     
-    if(isVideo){
+    if(isVideo=='true'){
         name = name + '.mp4'
     }
     console.log('inside getName',isVideo," : ",name);
