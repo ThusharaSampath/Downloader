@@ -101,7 +101,7 @@ function authorize(credentials, token, callback, params = {}) {
 function uploadFile(auth, params = {}) {
     var url = params.url
     var isVideo = params.isVideo;
-    console.log(isVideo);
+    //console.log(isVideo);
     Axios({
         method: "GET",
         url: url,
@@ -218,6 +218,7 @@ function getName(url,isVideo) {
 
     arr = name_.split('\\');
     name = arr[arr.length - 1];
+    console.log('inside getName',isVideo);
     if(isVideo){
         name = name + '.mp4'
     }
