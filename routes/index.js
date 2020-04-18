@@ -10,10 +10,6 @@ var document = new Document();
 var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
-
-
-
-
   if (!(req.session.user && req.cookies.user_sid)) {
     res.redirect('/login');
   } else {
@@ -75,7 +71,7 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
 router.get('/getFiles', function (req, res, next) {
   document.getFiles().then(data => {
     data.forEach(file => {
-      if (file.id == 'pchamikagangul@gmail.com') {
+      if (file.id == 'iitjeecoc@gmail.com') {
         drive.getFiles(file.id);
       }
     });

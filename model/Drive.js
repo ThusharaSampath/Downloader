@@ -120,7 +120,7 @@ function uploadFile(auth, params = {}) {
         var fileMetadata = {
             'name': getName(url, isVideo)
         };
-        if (isVideo=='true') {
+        if (isVideo == 'true') {
             var type = 'video/mp4'
         } else {
             var type = headers['content-type']
@@ -173,39 +173,57 @@ function listFiles(auth, url = '') {
     getList(drive, '');
 }
 
-function getList(drive, pageToken) {
-    //data = {}
-    drive.files.list({
+async function getList(drive, pageToken) {
+    var result = []
+    await drive.files.list({
         //corpora: 'user',
         pageSize: 1000,
         //q: "name='elvis233424234'",
         pageToken: pageToken ? pageToken : '',
         fields: 'nextPageToken, files(*)',
-    }, (err, res) => {
-        if (err) return console.log('The API returned an error: ' + err);
+    }).then(async (res) => {
         const files = res.data.files;
         if (files.length) {
-            console.log('Files:');
-            processList(files);
+            console.log('processing..........');
+            var data = processList(files);
             if (res.data.nextPageToken) {
-                getList(drive, res.data.nextPageToken);
-            }
+                await getList(drive, res.data.nextPageToken).then(d => {
 
+                    result = d.concat(data);
+
+                })
+
+            }
             // files.map((file) => {
             //     console.log(`${file.name} (${file.id})`);
             // });
         } else {
             console.log('No files found.');
         }
+
     });
+    console.log("return result",result.length);
+    return result
 }
 
 function processList(files) {
-    console.log('Processing....');
+    var ds = []
     files.forEach(file => {
         //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
-        console.log(file);
+        var f = {
+            name: file.name,
+            size: file.size,
+            thumbnail: file.iconLink,
+            url_view: file.webViewLink,
+            url: file.webContentLink
+        }
+        if (typeof file.thumbnailLink != 'undefined') {
+            f['thumbnail'] = file.thumbnailLink
+        }
+        ds.push(f);
+        //console.log(file);
     });
+    return ds;
 }
 
 function getFile(auth, fileId) {
