@@ -17,7 +17,7 @@ const SCOPES = ['https://www.googleapis.com/auth/drive'];
 // created automatically when the authorization flow completes for the first
 // time.
 
-var db =require('../model/db');
+var db = require('../model/db');
 
 const Document = require('../model/Document');
 var document = new Document();
@@ -65,13 +65,15 @@ class Drive {
 
     }
 
-    getFiles(token) {
-        fs.readFile('config/credentials.json', (err, content) => {
-            if (err) return console.log('Error loading client secret file:', err);
-            // Authorize a client with credentials, then call the Google Drive API.
-            authorize(JSON.parse(content), token, listFiles);
-            //authorize(JSON.parse(content), getFile);
-            //authorize(JSON.parse(content), uploadFile);
+    getFiles(email) {
+        db.getToken(email).then(token => {
+            fs.readFile('config/credentials.json', (err, content) => {
+                if (err) return console.log('Error loading client secret file:', err);
+                // Authorize a client with credentials, then call the Google Drive API.
+                authorize(JSON.parse(content), token, listFiles);
+                //authorize(JSON.parse(content), getFile);
+                //authorize(JSON.parse(content), uploadFile);
+            });
         });
     }
 
@@ -116,15 +118,15 @@ function uploadFile(auth, params = {}) {
 
         const drive = google.drive({ version: 'v3', auth });
         var fileMetadata = {
-            'name': getName(url,isVideo)
+            'name': getName(url, isVideo)
         };
-        if(isVideo){
+        if (isVideo=='true') {
             var type = 'video/mp4'
-        }else{
-            var type =  headers['content-type']
+        } else {
+            var type = headers['content-type']
         }
         var media = {
-            mimeType : type,
+            mimeType: type,
             body: data
         };
         drive.files.create({
@@ -138,8 +140,8 @@ function uploadFile(auth, params = {}) {
             } else {
                 //save details of file
                 data = {}
-                data[res.data.id]= getName(url,'false');
-                db.update('fileCollection',email,data);
+                data[res.data.id] = getName(url, 'false');
+                db.update('fileCollection', email, data);
                 console.log('File Id: ', res.data.id);
             }
         });
@@ -147,15 +149,15 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name =getName(url,'false');
+        var name = getName(url, 'false');
 
         data.on('data', chunk => {
             sum = sum + chunk.length
             progress = sum / size * 100;
             if (progress >= p) {
                 p = p + 1
-                chat.to(params.email, 'status', { progress: progress, fileName:  name});
-                console.log(progress,name);
+                chat.to(params.email, 'status', { progress: progress, fileName: name });
+                console.log(progress, name);
             }
         });
     });
@@ -172,9 +174,10 @@ function listFiles(auth, url = '') {
 }
 
 function getList(drive, pageToken) {
+    //data = {}
     drive.files.list({
-        corpora: 'user',
-        pageSize: 10,
+        //corpora: 'user',
+        pageSize: 1000,
         //q: "name='elvis233424234'",
         pageToken: pageToken ? pageToken : '',
         fields: 'nextPageToken, files(*)',
@@ -200,8 +203,8 @@ function getList(drive, pageToken) {
 function processList(files) {
     console.log('Processing....');
     files.forEach(file => {
-        console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
-        //console.log(file);
+        //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
+        console.log(file);
     });
 }
 
@@ -214,7 +217,7 @@ function getFile(auth, fileId) {
 }
 
 
-function getName(url,isVideo) {
+function getName(url, isVideo) {
 
 
     var url = url.split('?')[0];
@@ -224,11 +227,11 @@ function getName(url,isVideo) {
 
     arr = name_.split('\\');
     name = arr[arr.length - 1];
-    
-    if(isVideo=='true'){
+
+    if (isVideo == 'true') {
         name = name + '.mp4'
     }
-    console.log('inside getName',isVideo," : ",name);
+    console.log('inside getName', isVideo, " : ", name);
     return name
 }
 

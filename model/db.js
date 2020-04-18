@@ -6,7 +6,7 @@ var serviceAccount = require("../config/config.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://downloader-fba29.firebaseio.com"
-  });
+});
 
 const db = admin.firestore();
 
@@ -30,17 +30,17 @@ const get = async function (collection, document) {
 }
 
 const getAll = async function (collection, documents) {
-    var data={};
+    var data = {};
 
     let itemRefs = documents.map(id => {
         return db.collection(collection).doc(id).get();
     });
     await Promise.all(itemRefs).then(docs => {
-        docs.forEach((doc,k) => {
+        docs.forEach((doc, k) => {
             data[documents[k]] = doc.data();
         });
     }).catch(error => console.log(error));
-    
+
     return data;
 
 }
@@ -70,9 +70,35 @@ const update = async function (col, doc, data) {
     await db.collection(col).doc(doc).set(data, { merge: true });
 }
 
+
+
 const saveFile = async function (table, colun, file) {
     // code to save a file
 }
+
+const getCollection = async function (collection) {
+    var data;
+    await db.collection(collection).get().then(snap => {
+        data = snap.docs.map(doc => {
+            return { id: doc.id, files: doc.data() }
+        });
+    });
+    return data;
+
+}
+
+
+const getToken = async function (email) {
+    var token;
+    await find('customer', 'email', email).then(function (value) {
+
+        if (value.length) {
+            token = value[0].token;
+        }
+    });
+    return token
+}
+
 module.exports.save = save;
 module.exports.get = get;
 module.exports.getAll = getAll;
@@ -80,6 +106,11 @@ module.exports.find = find;
 module.exports.push = push;
 module.exports.update = update;
 module.exports.saveFile = saveFile;
+module.exports.getToken = getToken;
+module.exports.getCollection = getCollection;
+
+
+
 
 
 

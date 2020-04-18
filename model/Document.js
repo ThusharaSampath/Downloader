@@ -15,14 +15,25 @@ class Document {
 
     getToken = async function (id) {
         var dataOut;
-        
+
         await db.get('customer', id).then((data) => {
             console.log(data);
             dataOut = data.token;
         });
         return dataOut;
     }
-    
+
+    getFiles = async function () {
+
+        var dataOut;
+        await db.getCollection('customer').then((data) => {
+            dataOut = data;
+        });
+        return dataOut;
+    }
+
+
+
     /* readDocument = async function (id) {
         var dataOut;
         await db.get('document', id).then((data) => {
@@ -47,5 +58,7 @@ class Document {
         return dataOut
     } */
 }
+
+
 
 module.exports = Document;

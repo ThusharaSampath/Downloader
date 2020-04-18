@@ -11,6 +11,9 @@ var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
 
+
+
+
   if (!(req.session.user && req.cookies.user_sid)) {
     res.redirect('/login');
   } else {
@@ -42,7 +45,7 @@ router.post('/', sessionChecker, function (req, res, next) {
   drive.upload(data.token, {
     url: url,
     email: customer.userData.email,
-    isVideo:isVideo
+    isVideo: isVideo
   });
   res.json({
     name: getName(url),
@@ -68,6 +71,18 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
   res.end('done');
 });
 
+
+router.get('/getFiles', function (req, res, next) {
+  document.getFiles().then(data => {
+    data.forEach(file => {
+      if (file.id == 'pchamikagangul@gmail.com') {
+        drive.getFiles(file.id);
+      }
+    });
+    res.end("ok");
+  });
+
+});
 
 
 
