@@ -33,8 +33,10 @@ class Document {
     }
 
     update = async function (data) {
+        var i=0;
         data.forEach(file => {
-            console.log(file.name);
+            i=i+1;
+            console.log(i,file.name);
             db.update('videos',file.name,file);
         });
     }
