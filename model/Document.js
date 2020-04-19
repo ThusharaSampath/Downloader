@@ -34,7 +34,7 @@ class Document {
 
     update = async function (data) {
         data.forEach(file => {
-            await db.update('videos',file.name,file)
+            db.update('videos',file.name,file)
         });
     }
 
