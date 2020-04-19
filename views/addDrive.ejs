@@ -12,7 +12,7 @@
     <!------ Include the above in your HEAD tag ---------->
 </head>
 
-<body class="bg-1">
+<body class="cantainer bg-1">
     <%-include('nav.ejs',data)-%>
     <div class="tableWrapper">
         <div class="input-group mb-3">
@@ -22,7 +22,7 @@
                 <button class="btn btn-outline-secondary bg-2" type="button" onclick="addDrive()"><i class="fa fa-sign-in"></i> Submit</button>
             </div>
         </div>
-        <a href='<%=url%>' target='_blank' type="button" class="btn btn-primary btn-rounded btn-lg btn-block bg-2" >
+        <a href='<%=url%>' target='_blank' type="button" class="btn btn-primary btn-rounded btn-lg btn-block bg-2" style="margin-top: 5vh;" >
             <span class="glyphicon glyphicon-plus-sign "><i class="fa fa-key" aria-hidden="true"></i> 
                 Generate A Token </span>
         </a>
