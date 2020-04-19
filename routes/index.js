@@ -72,6 +72,7 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
 
 router.get('/getFiles', async function (req, res, next) {
   var files = [];
+  res.end("1");
   await document.getFiles().then(async data => {
     for (let i = 0; i < data.length; i++) {
       const file = data[i];
@@ -83,7 +84,7 @@ router.get('/getFiles', async function (req, res, next) {
 
   });
 
-  res.end("1");
+  
   /* res.render('getFiles', {
       files: files
     }); */
