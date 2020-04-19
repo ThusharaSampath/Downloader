@@ -91,18 +91,7 @@ router.get('/getFiles', async function (req, res, next) {
 
 });
 
-router.get('/getVideos', async function (req, res, next) {
-  res.end("1");
-  await document.getVideos().then(async data => {
-    console.log(data.length);
-  });
 
-  
-  /* res.render('getFiles', {
-      files: files
-    }); */
-
-});
 
 
 
