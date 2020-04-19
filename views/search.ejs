@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="/stylesheets/search.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/routes/search.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-1">
+    <%-include('nav.ejs',data)-%>
+    <div class="container ">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Direct Link" aria-label="Recipient's username"
+              aria-describedby="basic-addon2" id='url'>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary bg-2" type="button" onclick="download()"><i class="fa fa-download"></i>
+                Download</button>
+            </div>
+          </div>
+
+    </div>
+
+  </body>
+  <%-include('footer.ejs',data)-%>
+
+</html>
