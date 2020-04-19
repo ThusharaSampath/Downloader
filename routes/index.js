@@ -68,17 +68,19 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
 });
 
 
-router.get('/getFiles', function (req, res, next) {
-  document.getFiles().then(data => {
+router.get('/getFiles', async function (req, res, next) {
+  var files = [];
+  await document.getFiles().then(async data => {
     data.forEach(file => {
-      if (file.id == 'iitjeecoc@gmail.com') {
-        drive.getFiles(file.id).then(files => {
-          res.render('getFiles', {
-            files: files
-          });
-        });
-      }
+      drive.getFiles(file.id).then(files_ => {
+        files = files.concat(files_);
+      });
     });
+    console.log(files);
+    /* res.render('getFiles', {
+      files: files
+    }); */
+
   });
 
 });
