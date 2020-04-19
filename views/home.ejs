@@ -12,10 +12,10 @@
   <!------ Include the above in your HEAD tag ---------->
 </head>
 <body class="bg-1">
-  
+<div class="container bg-3">
   <%-include('nav.ejs',data)-%>
   
-  <div class="tableWrapper">
+  <div class="tableWrapper bg-3">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Direct Link" aria-label="Recipient's username"
         aria-describedby="basic-addon2" id='url'>
@@ -28,8 +28,11 @@
       <label class="form-check-label" style="color: aliceblue;" for="exampleCheck1">Video</label>
     </div>
     
-    <div id='progress_wrapper'>
+    <div id='progress_wrapper'> </div>
   </div>
+</div> 
 </body>
+
+<%-include('footer.ejs',data)-%>
 
 </html>

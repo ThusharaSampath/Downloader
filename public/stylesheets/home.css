@@ -1,10 +1,11 @@
 
 
-.tableWrapper {
+/* .tableWrapper {
   margin-top: 3%;
   padding: 2%;
   width: 100%;
-}
+  height: 100%;
+} */
 
 @media screen and (max-width: 750px) {
   .tableWrapper {
@@ -20,3 +21,11 @@ background-color: #383838;
   background: linear-gradient(45deg, rgba(74,1,96,1) 0%, rgba(9,9,121,1) 100%); 
 }
 
+.bg-3{
+  margin-top: 4vh;
+  margin: auto;
+  padding: 4vh;
+  align-items: center;
+  height: 40%;
+  width: 80%;
+}
