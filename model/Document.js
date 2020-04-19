@@ -32,12 +32,21 @@ class Document {
         return dataOut;
     }
 
+    getVideos = async function () {
+
+        var dataOut;
+        await db.getCollection('videos').then((data) => {
+            dataOut = data;
+        });
+        return dataOut;
+    }
+
     update = async function (data) {
         var i=0;
-        data.forEach(file => {
+        await data.forEach(async file => {
             i=i+1;
             console.log(i,file.name);
-            db.update('videos',file.name,file);
+            await db.update('videos',file.name,file);
         });
     }
 

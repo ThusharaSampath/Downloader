@@ -66,8 +66,8 @@ const push = async function (col, data) {
 
 
 
-const update = function (col, doc, data) {
-    db.collection(col).doc(doc).set(data, { merge: true });
+const update = async function (col, doc, data) {
+    await db.collection(col).doc(doc).set(data, { merge: true });
 }
 
 
