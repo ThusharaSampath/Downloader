@@ -1,14 +1,22 @@
 
-  
-  .tableWrapper{
-    margin-top: 3%;
-    padding: 2%;
-    width: 100%;
-  }
 
+.tableWrapper {
+  margin-top: 3%;
+  padding: 2%;
+  width: 100%;
+}
 
-  @media screen and (max-width: 750px) {
-    .tableWrapper{
-        margin-top: 12%;
-      }
+@media screen and (max-width: 750px) {
+  .tableWrapper {
+    margin-top: 12%;
   }
+}
+.bg-1{
+background-color: #383838;
+}
+
+.bg-2{
+  background: rgb(74,1,96);
+  background: linear-gradient(45deg, rgba(74,1,96,1) 0%, rgba(9,9,121,1) 100%); 
+}
+
