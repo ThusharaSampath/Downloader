@@ -69,7 +69,7 @@ class Drive {
         var result = []
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
-            if(typeof token=='undefined'){
+            if (typeof token == 'undefined') {
                 return [];
             }
 
@@ -80,7 +80,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await listFiles(oAuth2Client).then(data => {
+            await listFiles(oAuth2Client,email).then(data => {
                 result = data
             })
 
@@ -180,16 +180,16 @@ function uploadFile(auth, params = {}) {
 }
 
 
-async function listFiles(auth, url = '') {
+async function listFiles(auth, email = '') {
     const drive = google.drive({ version: 'v3', auth });
     var result = []
-    await getList(drive, '').then(data => {
+    await getList(drive, '',email).then(data => {
         result = data
     })
     return result;
 }
 
-async function getList(drive, pageToken) {
+async function getList(drive, pageToken,email='') {
     var result = []
     await drive.files.list({
         //corpora: 'user',
@@ -201,7 +201,7 @@ async function getList(drive, pageToken) {
         const files = res.data.files;
         if (files.length) {
             console.log('processing..........');
-            var data = processList(files);
+            var data = processList(files,email);
             if (res.data.nextPageToken) {
                 await getList(drive, res.data.nextPageToken).then(d => {
                     result = d.concat(data);
@@ -220,17 +220,24 @@ async function getList(drive, pageToken) {
     return result
 }
 
-function processList(files) {
+function processList(files,email) {
     var ds = []
     files.forEach(file => {
         //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
+        
         var f = {
+            id: file.id,
+            username:email,
             name: file.name,
             size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
-            url: file.webContentLink
+            url: file.webContentLink,
+            mimeType: file.mimeType,
+            email: file.owners[0].emailAddress,
+            owner: file.owners[0].displayName
         }
+        //fs.writeFileSync('data.json',JSON.stringify(f));
         if (typeof file.thumbnailLink != 'undefined') {
             f['thumbnail'] = file.thumbnailLink
         }

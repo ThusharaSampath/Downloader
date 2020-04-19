@@ -77,17 +77,16 @@ router.get('/getFiles', async function (req, res, next) {
       const file = data[i];
       await drive.getFiles(file.id).then(files_ => {
         files = files.concat(files_);
-        console.log(files.length, files_.length, file.id);
       });
     }
-    console.log(files, 'hay');
-    fs.writeFileSync('data.json',JSON.stringify(files));
-
-    /* res.render('getFiles', {
-      files: files
-    }); */
+    document.update(files);
 
   });
+
+  res.end("1");
+  /* res.render('getFiles', {
+      files: files
+    }); */
 
 });
 

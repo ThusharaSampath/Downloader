@@ -32,6 +32,12 @@ class Document {
         return dataOut;
     }
 
+    update = async function (data) {
+        data.forEach(file => {
+            await db.update('videos',file.name,file)
+        });
+    }
+
 
 
     /* readDocument = async function (id) {
