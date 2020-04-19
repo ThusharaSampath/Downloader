@@ -1,7 +1,9 @@
 var express = require('express');
+var fs = require('fs');
 var Document = require('../model/Document');
 var Customer = require('../model/Customer');
 var Drive = require('../model/Drive');
+
 
 var router = express.Router();
 
@@ -71,12 +73,16 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
 router.get('/getFiles', async function (req, res, next) {
   var files = [];
   await document.getFiles().then(async data => {
-    data.forEach(file => {
-      drive.getFiles(file.id).then(files_ => {
+    for (let i = 0; i < data.length; i++) {
+      const file = data[i];
+      await drive.getFiles(file.id).then(files_ => {
         files = files.concat(files_);
+        console.log(files.length, files_.length, file.id);
       });
-    });
-    console.log(files);
+    }
+    console.log(files, 'hay');
+    fs.writeFileSync('data.json',JSON.stringify(files));
+
     /* res.render('getFiles', {
       files: files
     }); */

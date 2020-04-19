@@ -69,6 +69,9 @@ class Drive {
         var result = []
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
+            if(typeof token=='undefined'){
+                return [];
+            }
 
             const { client_secret, client_id, redirect_uris } = JSON.parse(content).installed;
             const oAuth2Client = new google.auth.OAuth2(

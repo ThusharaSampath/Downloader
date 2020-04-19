@@ -93,7 +93,11 @@ const getToken = async function (email) {
     await find('customer', 'email', email).then(function (value) {
 
         if (value.length) {
-            token = value[0].token;
+            try{
+                token = value[0].token;
+            }catch{
+                token ={}
+            }
         }
     });
     return token
