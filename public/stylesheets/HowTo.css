@@ -1,9 +1,11 @@
 
   
   .tableWrapper{
-    margin-top: 3%;
-    padding: 2%;
-    width: 100%;
+    margin-top: 5%;
+    margin: auto;
+    padding: 2vh;
+    height: 40%;
+    width: 80%;
   }
   img {
     display: block;
@@ -15,7 +17,11 @@
 
   @media screen and (max-width: 750px) {
     .tableWrapper{
-        margin-top: 12%;
+      margin-top: 5%;
+      margin: auto;
+      padding: 2vh;
+      height: 40%;
+      width: 80%;
       }
       img {
         display: block;
@@ -24,3 +30,7 @@
         height: 35vh;
       }
   }
+  .bg-1{
+    background-color: #383838;
+    }
+ 

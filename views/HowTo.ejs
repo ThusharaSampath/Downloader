@@ -3,6 +3,9 @@
 
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
     <link href="/stylesheets/HowTo.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="bg-1" style="color: aliceblue;">
     <div class="tableWrapper">
         <%-include('nav.ejs',data)-%>
         <h5>Mainly There are 2 steps</h5>
@@ -23,7 +26,7 @@
         <br>
         <h4>01. Connect Drive to the website</h4>
         <br>
-        <pre>Click 'Add Drive' and Follow fallowing steps</pre>
+        <pre style="color: aliceblue;">Click 'Add Drive' and Follow fallowing steps</pre>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <pre>01. Click Generate A Token Button</pre>
@@ -88,4 +91,5 @@
         </ul>
     </div>
 </body>
+<%-include('footer.ejs',data)-%>
 </html>
