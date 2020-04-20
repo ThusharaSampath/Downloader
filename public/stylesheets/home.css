@@ -22,10 +22,11 @@ background-color: #383838;
 }
 
 .bg-3{
-  margin-top: 4vh;
+  
   margin: auto;
-  padding: 4vh;
+  margin-top: 5%;
+  padding: 2vh;
   align-items: center;
-  height: 40%;
-  width: 80%;
+  height: 50%;
+  width: 90%;
 }

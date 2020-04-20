@@ -1,5 +1,16 @@
+.bg-1{
+    background-color: #383838;
+    color: white;
+    }
+.bg-2{
+    margin: auto;
+    margin-top: 5%;
+    padding: 2vh;
+    align-items: center;
+    height: 50%;
+    width: 90%;
+}
 
-  
   .tableWrapper{
     margin-top: 5%;
     padding: 2%;
@@ -31,10 +42,13 @@
         height: auto;
         width: 95%;
       }
+  }  
+  .bg-3{
+  
+    margin: auto;
+    margin-top: 5%;
+    padding: 2vh;
+    align-items: center;
+    height: 50%;
+    width: 90%;
   }
-.bg-1{
-background-color: #383838;
-}
-.bg-2{
-  max-width: 95%;
-}

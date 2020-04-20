@@ -39,4 +39,9 @@ router.get('/', async function (req, res, next) {
 
 });
 
+function search(){
+    console.log("search it bitch")
+}
+
 module.exports = router;
+module.exports = search;

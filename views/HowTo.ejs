@@ -3,6 +3,9 @@
 
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
     <link href="/stylesheets/HowTo.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,78 +17,81 @@
 
 </head>
 
-<body>
-    <div class="tableWrapper">
-        <%-include('nav.ejs',data)-%>
-        <h5>Mainly There are 2 steps</h5>
-        <h6>01. Connect Drive to the website (once)</h6>
-        <h6>02. Download any file to Your drive</h6>
-        <br>
-        <h4>01. Connect Drive to the website</h4>
-        <br>
-        <pre>Click 'Add Drive' and Follow fallowing steps</pre>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <pre>01. Click Generate A Token Button</pre>
-                <img src="/images/01.JPG" alt="">
-            </li>
+<body class="bg-1" style="color: aliceblue;">
+    <div class="container bg-2">
+        <div class="tableWrapper">
+            <%-include('nav.ejs',data)-%>
+            <h5>Mainly There are 2 steps</h5>
+            <h6>01. Connect Drive to the website (once)</h6>
+            <h6>02. Download any file to Your drive</h6>
+            <br>
+            <h4>01. Connect Drive to the website</h4>
+            <br>
+            <pre style="color: aliceblue;">Click 'Add Drive' and Follow fallowing steps</pre>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <pre>01. Click Generate A Token Button</pre>
+                    <img src="/images/01.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>02. Choose an account</pre>
-                <img src="/images/02.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>02. Choose an account</pre>
+                    <img src="/images/02.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>03. Click Advance</pre>
-                <img src="/images/03.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>03. Click Advance</pre>
+                    <img src="/images/03.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>04. Click Go to QuickStart</pre>
-                <img src="/images/04.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>04. Click Go to QuickStart</pre>
+                    <img src="/images/04.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>05. Click Allow</pre>
-                <img src="/images/05.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>05. Click Allow</pre>
+                    <img src="/images/05.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>06. Click Allow</pre>
-                <img src="/images/06.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>06. Click Allow</pre>
+                    <img src="/images/06.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>07. Copy the token</pre>
-                <img src="/images/07.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>07. Copy the token</pre>
+                    <img src="/images/07.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>08. Paste and Submit</pre>
-                <img src="/images/08.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>08. Paste and Submit</pre>
+                    <img src="/images/08.JPG" alt="">
+                </li>
 
-        </ul>
+            </ul>
 
-        <h4>02. Download any file to Your drive</h4>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <pre>01. Click 'Home' amd visit main page</pre>
-                <img src="/images/09.JPG" alt="">
-            </li>
+            <h4>02. Download any file to Your drive</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <pre>01. Click 'Home' amd visit main page</pre>
+                    <img src="/images/09.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>02. Paste Direct link to a file (film/zip/setup/anthing) and click download</pre>
-                <img src="/images/10.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>02. Paste Direct link to a file (film/zip/setup/anthing) and click download</pre>
+                    <img src="/images/10.JPG" alt="">
+                </li>
 
-            <li class="list-group-item">
-                <pre>02. It will download to your drive</pre>
-                <img src="/images/11.JPG" alt="">
-            </li>
+                <li class="list-group-item">
+                    <pre>02. It will download to your drive</pre>
+                    <img src="/images/11.JPG" alt="">
+                </li>
 
 
-        </ul>
-    </div>
+            </ul>
+        </div>
+    </div>    
 </body>
+<%-include('footer.ejs',data)-%>
 </html>

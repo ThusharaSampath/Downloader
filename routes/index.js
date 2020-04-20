@@ -35,6 +35,7 @@ router.get('/', sessionChecker, function (req, res, next) {
   res.render('home', data);
 });
 
+
 router.post('/', sessionChecker, function (req, res, next) {
   data = customer.userData;
   var url = req.body.url;
@@ -60,6 +61,16 @@ router.get('/addDrive', sessionChecker, function (req, res, next) {
 router.get('/HowTo', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('HowTo', data);
+});
+
+router.get('/filmCard', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  res.render('filmCard', data);
+});
+/* GET search page. */
+router.get('/search', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  res.render('search', data);
 });
 
 router.post('/addDrive', sessionChecker, function (req, res, next) {

@@ -1,5 +1,4 @@
 .nav-font{
-    
     color:white;
 }
 
@@ -10,3 +9,8 @@
 .a{
     font-family: cursive;
 }    
+
+img{
+    height: 20%;
+    width: 30%;
+}
