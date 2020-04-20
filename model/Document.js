@@ -5,23 +5,8 @@ class Document {
     constructor() {
         this.loggedIn = false;
     }
-    saveToken(token, customer) {
-        //console.log(data);
-        db.update('customer', customer.userData.email, {
-            token: token
-        });
-        //save a ref in coustomer db
-    }
 
-    getToken = async function (id) {
-        var dataOut;
 
-        await db.get('customer', id).then((data) => {
-            console.log(data);
-            dataOut = data.token;
-        });
-        return dataOut;
-    }
 
     getFiles = async function () {
 

@@ -19,8 +19,6 @@ const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
 var db = require('../model/db');
 
-const Document = require('../model/Document');
-var document = new Document();
 
 
 class Drive {
@@ -60,7 +58,9 @@ class Drive {
             if (err) return console.error('Error retrieving access token', err);
             oAuth2Client.setCredentials(token);
             // Store the token to disk for later program executions
-            document.saveToken(token, customer);
+            db.update('customer', customer.userData.email, {
+                token: code
+            });
         });
 
     }
