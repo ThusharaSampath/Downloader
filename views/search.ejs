@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search</title>
+    <title>Downloader</title>
     <link
       href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,17 +18,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body class="bg-1">
-    <%-include('nav.ejs',data)-%>
-    <div class="container bg-2">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search" aria-label="Search tag"
-              aria-describedby="basic-addon2" id='url'>
+    
+    <div class="container bg-3">
+        <%-include('nav.ejs',data)-%>
+        
+        <div class="tableWrapper bg-3">
+      
+      
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search key word" aria-label="SearchTag"
+              aria-describedby="basic-addon2" id='url' value="">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary bg-2" type="button" onclick="Search()"><i class="fa fa-search"></i>
+              <button class="btn btn-outline-secondary bg-2" type="button" onclick="search()"><i class="fa fa-search"></i>
                 Search</button>
             </div>
           </div>
-    </div>
+          
+      
+          
+          <div id='progress_wrapper'> </div>
+        </div>
+      </div> 
   </body>
   <%-include('footer.ejs',data)-%>
 </html>

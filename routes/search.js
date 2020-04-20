@@ -30,4 +30,8 @@ router.get('/', async function (req, res, next) {
 
 });
 
+search();{
+    console.log("search it bitch")
+}
+
 module.exports = router;
