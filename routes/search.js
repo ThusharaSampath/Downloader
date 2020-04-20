@@ -12,15 +12,24 @@ var document = new Document();
 var drive = new Drive();
 
 router.get('/', async function (req, res, next) {
-    var searchtag = 'Money';
+    search = "money heist mp4 1080"
+    var searchTags = search.split(/(?:,| )+/);
     res.end("1");
     await document.getVideos().then(async data => {
         //fs.writeFileSync('data.json',JSON.stringify(data));
         data.forEach(video => {
-            if (video.files.name.includes(searchtag)) {
-                console.log(video.files.name);
-            }
+            var count = 0
+            searchTags.forEach(tag => {
+                if(video.files.name.includes(tag)){
+                    count = count +1;
+                }
+            });
+            video['count'] = count;
         });
+        data =data.sort(function(a, b) {
+            return b.count - a.count;
+        });
+        console.log(data);
     });
 
 
