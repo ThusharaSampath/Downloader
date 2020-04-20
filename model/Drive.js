@@ -228,7 +228,7 @@ function processList(files,email) {
         var f = {
             id: file.id,
             username:email,
-            name: file.name,
+            name: file.name.toLowerCase(),
             size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
