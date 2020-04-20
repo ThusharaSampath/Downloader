@@ -4,6 +4,7 @@ const { google } = require('googleapis');
 
 var chat = require('../chat/chat');
 const Axios = require('axios');
+var streamBuffers = require('stream-buffers');
 
 //Drive API, v3
 //https://www.googleapis.com/auth/drive	See, edit, create, and delete all of your Google Drive files
@@ -44,8 +45,6 @@ class Drive {
     }
 
     setToken(code, customer) {
-
-
         var data = fs.readFileSync('config/credentials.json');
         var credentials = JSON.parse(data);
 
@@ -80,13 +79,52 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await listFiles(oAuth2Client,email).then(data => {
+            await listFiles(oAuth2Client, email).then(data => {
                 result = data
             })
 
         });
         return result;
+    }
 
+    async saveDB(email, data) {
+        var result = []
+        await db.getToken(email).then(async token => {
+            var content = fs.readFileSync('config/credentials.json');
+            if (typeof token == 'undefined') {
+                return [];
+            }
+
+            const { client_secret, client_id, redirect_uris } = JSON.parse(content).installed;
+            const oAuth2Client = new google.auth.OAuth2(
+                client_id, client_secret, redirect_uris[0]);
+
+            // Check if we have previously stored a token.
+
+            oAuth2Client.setCredentials(token);
+            await saveDB(oAuth2Client, data);
+        });
+        return result;
+    }
+
+    async getDB(email) {
+        var result = []
+        await db.getToken(email).then(async token => {
+            var content = fs.readFileSync('config/credentials.json');
+            if (typeof token == 'undefined') {
+                return [];
+            }
+
+            const { client_secret, client_id, redirect_uris } = JSON.parse(content).installed;
+            const oAuth2Client = new google.auth.OAuth2(
+                client_id, client_secret, redirect_uris[0]);
+
+            // Check if we have previously stored a token.
+
+            oAuth2Client.setCredentials(token);
+            await getDB(oAuth2Client);
+        });
+        return true;
     }
 
     upload(token, params) {
@@ -179,29 +217,79 @@ function uploadFile(auth, params = {}) {
 
 }
 
+async function saveDB(auth, data = {}) {
 
+    fs.writeFileSync('data.txt', JSON.stringify(data));
+    var id = "1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR"
+
+    const drive = google.drive({ version: 'v3', auth });
+    const media = {
+        mimeType: 'application/json',
+        body: fs.createReadStream('data.txt'),
+    };
+    drive.files.update({
+        fileId: id,
+        media: media,
+    }, (err, res) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(res.data);
+    });
+    /* drive.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id'
+    }, function (err, res) {
+        if (err) {
+            // Handle error
+            console.log(err);
+        } else {
+            console.log('File Id: ', res.data.id);
+        }
+    }); */
+}
+async function getDB(auth) {
+    const drive = google.drive({ version: 'v3', auth });
+    var fileId = '1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR';
+    var dest = fs.createWriteStream('data.txt');
+
+    await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
+        async function (err, res) {
+            await res.data
+                .on('end', () => {
+                    console.log('done');
+                })
+                .on('error', err => {
+                    console.log('Error', err);
+                })
+                .pipe(dest);
+        });
+    return true;
+}
 async function listFiles(auth, email = '') {
     const drive = google.drive({ version: 'v3', auth });
     var result = []
-    await getList(drive, '',email).then(data => {
+    await getList(drive, '', email).then(data => {
         result = data
     })
     return result;
 }
 
-async function getList(drive, pageToken,email='') {
+async function getList(drive, pageToken, email = '') {
     var result = []
     await drive.files.list({
         //corpora: 'user',
         pageSize: 100,
-        q: "mimeType='video/x-matroska' or mimeType='video/mp4'",
+        q: "mimeType='video/x-matroska' or mimeType='video/mp4 or video/x-flv or application/x-mpegURL or video/MP2T or video/quicktime or video/x-msvideo or video/x-ms-wmv'",
         pageToken: pageToken ? pageToken : '',
         fields: 'nextPageToken, files(*)',
     }).then(async (res) => {
         const files = res.data.files;
         if (files.length) {
             console.log('processing..........');
-            var data = processList(files,email);
+            var data = processList(files, email);
             if (res.data.nextPageToken) {
                 await getList(drive, res.data.nextPageToken).then(d => {
                     result = d.concat(data);
@@ -220,14 +308,14 @@ async function getList(drive, pageToken,email='') {
     return result
 }
 
-function processList(files,email) {
+function processList(files, email) {
     var ds = []
     files.forEach(file => {
         //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
-        
+
         var f = {
             id: file.id,
-            username:email,
+            username: email,
             name: file.name.toLowerCase(),
             size: file.size,
             thumbnail: file.iconLink,
