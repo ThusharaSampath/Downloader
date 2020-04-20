@@ -282,7 +282,7 @@ async function getList(drive, pageToken, email = '') {
     await drive.files.list({
         //corpora: 'user',
         pageSize: 100,
-        q: "mimeType='video/x-matroska' or mimeType='video/mp4 or video/x-flv or application/x-mpegURL or video/MP2T or video/quicktime or video/x-msvideo or video/x-ms-wmv'",
+        q: "mimeType='video/x-matroska' or mimeType='video/mp4 or mimeType=video/x-flv or mimeType=application/x-mpegURL or mimeType=video/MP2T or mimeType=video/quicktime or mimeType=video/x-msvideo or mimeType=video/x-ms-wmv'",
         pageToken: pageToken ? pageToken : '',
         fields: 'nextPageToken, files(*)',
     }).then(async (res) => {
