@@ -12,7 +12,7 @@ var document = new Document();
 var drive = new Drive();
 
 router.post('/', async function (req, res, next) {
-    search = "money heist mp4 1080"
+    search = req.body.tags;
     var searchTags = search.split(/(?:,| )+/);
     await document.getVideos().then(async data => {
         //fs.writeFileSync('data.json',JSON.stringify(data));
