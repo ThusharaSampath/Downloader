@@ -25,9 +25,13 @@ router.post('/', async function (req, res, next) {
             });
             video['count'] = count;
         });
-        data = data.sort(function (a, b) {
+        data.sort(function (a, b) {
             return b.count - a.count;
         });
+
+        data = data.filter(d =>  d.count > 0 );
+        console.log(data);
+
         res.end(JSON.stringify(data));
     });
 
