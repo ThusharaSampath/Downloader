@@ -63,7 +63,7 @@ router.get('/HowTo', sessionChecker, function (req, res, next) {
   res.render('HowTo', data);
 });
 
-router.get('/filmCard', sessionChecker, function (req, res, next) {
+router.get('/film', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('filmCard', data);
 });
