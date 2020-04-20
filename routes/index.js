@@ -62,6 +62,11 @@ router.get('/HowTo', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('HowTo', data);
 });
+
+router.get('/filmCard', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  res.render('filmCard', data);
+});
 /* GET search page. */
 router.get('/search', sessionChecker, function (req, res, next) {
   data = customer.userData;

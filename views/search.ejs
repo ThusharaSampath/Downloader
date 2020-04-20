@@ -18,27 +18,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body class="bg-1">
-    
     <div class="container bg-3">
-        <%-include('nav.ejs',data)-%>
-        
-        <div class="tableWrapper bg-3">
-      
-      
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search key word" aria-label="SearchTag"
-              aria-describedby="basic-addon2" id='url' value="">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary bg-2" type="button" onclick="search()"><i class="fa fa-search"></i>
-                Search</button>
-            </div>
+      <%-include('nav.ejs',data)-%>
+
+      <div class="tableWrapper bg-3">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search key word"
+            aria-label="SearchTag"
+            aria-describedby="basic-addon2"
+            id="url"
+            value=""
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary bg-2"
+              type="button"
+              onclick="search()"
+            >
+              <i class="fa fa-search"></i> Search
+            </button>
           </div>
-          
-      
-          
-          <div id='progress_wrapper'> </div>
         </div>
-      </div> 
+
+        <div id="progress_wrapper"></div>
+
+        
+      </div>
+      <%-include('filmCard.ejs',data)-%>
+    </div>
+
   </body>
   <%-include('footer.ejs',data)-%>
 </html>
