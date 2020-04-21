@@ -67,7 +67,12 @@ router.get('/', sessionChecker, function (req, res, next) {
 
 
 router.get('/db', async function (req, res, next) {
-  res.end("1");
+  res.end("db");
   document.updateDB();
+});
+
+router.get('/views', async function (req, res, next) {
+  res.end("views");
+  document.updateDB_views('1aRFoK83rKDMA__cFbdMLlmYqIV4uZF3g');
 });
 module.exports = router;

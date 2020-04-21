@@ -48,33 +48,40 @@ class Document {
                     files = files.concat(files_);
                 });
             }
-            var result = (new Document).getVideos();
-            var temp = []
-            files.forEach(file => {
-                if (!temp.includes(file.name)) {
-                    temp.push(file.name);
-                    if (typeof result[file.id] == 'undefined') {
-                        result[file.id] = {}
+            (new Document).getVideos().then(result => {
+
+                var temp = []
+                files.forEach(file => {
+                    if (!temp.includes(file.name)) {
+                        temp.push(file.name);
+                        if (typeof result[file.id] == 'undefined') {
+                            result[file.id] = {}
+                        }
+                        result[file.id] = Object.assign(result[file.id], file);
                     }
-                    result[file.id] = Object.assign(result[file.id], file);
-                }
+                });
+                console.log(Object.keys(result).length);
+                drive.saveDB('pchamikagangul@gmail.com', result);
             });
-            console.log(Object.keys(result).length);
-            drive.saveDB('pchamikagangul@gmail.com', result);
+
+
         });
 
     }
 
     updateDB_views = async function (id) {
 
-        var result = (new Document).getVideos();
-        
-        if(typeof result[id] == 'undefined'){
-            result.id['']
-        }
-        console.log(Object.keys(result).length);
-        drive.saveDB('pchamikagangul@gmail.com', result);
-
+        (new Document).getVideos().then(result => {
+            if(typeof result[id].view == 'undefined'){
+                console.log(result[id]);
+                result[id]['view'] = 0
+            }else{
+                result[id].view= result[id].view  + 1
+            }
+            console.log(result[id]);
+            drive.saveDB('pchamikagangul@gmail.com', result);
+            fs.writeFileSync('data.txt',result);
+        });
 
     }
 
