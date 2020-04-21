@@ -3,9 +3,11 @@ body {
 }
 
 .container {
- 
-  width: 300px;
-  height: 400px;
+  border: solid;
+  border-color: indigo;
+
+  width: 450px;
+  height: 300px;
   position: absolute;
   top: 0;
   right: 0;
@@ -20,7 +22,7 @@ body {
 }
 
 .container:hover .tumbName {
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
   opacity: 0;
 }
 .overlay {
@@ -36,9 +38,10 @@ body {
   font-family: "Playfair Display", serif;
 }
 .tumbName{
-  transform: translateY(-100px);
   opacity: 1;
-  transition: all 0.7s;
+  transition: all 0.2s;
+  color: black;
+  font-weight:bold;
 }
 .items {
   padding-left: 20px;
@@ -50,6 +53,8 @@ body {
   line-height: 40px;
   transform: translateY(40px);
   transition: all 0.7s;
+ 
+  
 }
 .head hr {
   display: block;
@@ -60,6 +65,9 @@ body {
   bottom: 0;
   left: 20px;
   transition: all 0.5s;
+}
+.head h7{
+  margin-right: 2px;
 }
 
 .price {
