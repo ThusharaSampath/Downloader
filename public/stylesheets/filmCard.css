@@ -3,13 +3,13 @@ body {
 }
 
 .container {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   border: solid;
-  border-color: indigo;
+  border-color: black;
+  width:300px;
+  height: 200px;
 
-  width: 450px;
-  height: 300px;
-
-  margin: auto;
+  margin: 5px;
   background-color: black;
   background-size: cover;
   cursor: pointer;
@@ -33,11 +33,11 @@ body {
   transition: all 0.5s;
   font-family: "Playfair Display", serif;
 }
-.tumbName{
+.tumbName {
   opacity: 1;
   transition: all 0.2s;
   color: black;
-  font-weight:bold;
+  font-weight: bold;
 }
 .items {
   padding-left: 20px;
@@ -45,12 +45,12 @@ body {
 }
 
 .head {
-  font-size: 30px;
-  line-height: 40px;
-  transform: translateY(40px);
+  font-size: 20px;
+  line-height: 30px;
+   /* font-size: 4vw;
+  line-height: 5vw; */
+  transform: translateY(60px);
   transition: all 0.7s;
- 
-  
 }
 .head hr {
   display: block;
@@ -62,16 +62,18 @@ body {
   left: 20px;
   transition: all 0.5s;
 }
-.head h7{
+.head h7 {
   margin-right: 2px;
 }
 
 .price {
-  font-size: 22px;
-  line-height: 10px;
+  font-size: 15px;
+  line-height: 5px;
+  /* font-size: 3vw;
+  line-height: 2vw; */
   font-weight: bold;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(60px);
   transition: all 0.7s;
 }
 .price .old {
@@ -80,15 +82,17 @@ body {
 }
 
 .cart {
-  font-size: 12px;
+  font-size: 8px;
+  /* font-size: 2vw; */
+ 
   opacity: 0;
   letter-spacing: 1px;
   font-family: "Lato", sans-serif;
-  transform: translateY(40px);
+  transform: translateY(60px);
   transition: all 0.7s;
 }
 .cart i {
-  font-size: 16px;
+  font-size: 11px;
 }
 .cart span {
   margin-left: 10px;
@@ -113,4 +117,47 @@ body {
   transform: translateY(0px);
   transition-delay: 0.6s;
   opacity: 1;
+}
+/* //////////////////////////////////////////////// */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 2px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  min-width: 100px;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 400px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
