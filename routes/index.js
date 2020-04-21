@@ -67,11 +67,7 @@ router.get('/film', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('filmCard', data);
 });
-/* GET search page. */
-router.get('/search', sessionChecker, function (req, res, next) {
-  data = customer.userData;
-  res.render('search', data);
-});
+
 
 router.post('/addDrive', sessionChecker, function (req, res, next) {
   data = customer.userData;
@@ -82,18 +78,7 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
 
 
 router.get('/getFiles', async function (req, res, next) {
-  var files = [];
-  res.end("1");
-  await document.getFiles().then(async data => {
-    for (let i = 0; i < data.length; i++) {
-      const file = data[i];
-      await drive.getFiles(file.id).then(files_ => {
-        files = files.concat(files_);
-      });
-    }
-    document.update(files);
-
-  });
+  
 
   
   /* res.render('getFiles', {

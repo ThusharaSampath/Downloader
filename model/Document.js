@@ -1,26 +1,13 @@
 const db = require('./db');
+const Drive = require('./Drive');
+const fs = require('fs');
+
+var drive = new Drive();
 
 
 class Document {
     constructor() {
         this.loggedIn = false;
-    }
-    saveToken(token, customer) {
-        //console.log(data);
-        db.update('customer', customer.userData.email, {
-            token: token
-        });
-        //save a ref in coustomer db
-    }
-
-    getToken = async function (id) {
-        var dataOut;
-
-        await db.get('customer', id).then((data) => {
-            console.log(data);
-            dataOut = data.token;
-        });
-        return dataOut;
     }
 
     getFiles = async function () {
@@ -32,22 +19,47 @@ class Document {
         return dataOut;
     }
 
-    getVideos = async function () {
+    getDB = async function () {
+        await drive.getDB('pchamikagangul@gmail.com');
 
-        var dataOut;
-        await db.getCollection('videos').then((data) => {
-            dataOut = data;
-        });
-        return dataOut;
     }
 
-    update = async function (data) {
+    getVideos = async function () {
+        var data = fs.readFileSync('data.txt', 'utf8')
+        data = JSON.parse(data);
+        return data;
+    }
+
+    /* update = async function (data) {
         var i=0;
         await data.forEach(async file => {
             i=i+1;
             console.log(i,file.name);
             await db.update('videos',file.name,file);
         });
+    } */
+
+    updateDB = async function () {
+        var files = [];
+        await (new Document()).getFiles().then(async data => {
+            for (let i = 0; i < data.length; i++) {
+                const file = data[i];
+                await drive.getFiles(file.id).then(files_ => {
+                    files = files.concat(files_);
+                });
+            }
+            var result = []
+            var temp = []
+            files.forEach(file => {
+                if(!temp.includes(file.name)){
+                    temp.push(file.name);
+                    result.push(file);
+                }
+            });
+            console.log(result.length);
+            drive.saveDB('pchamikagangul@gmail.com', result);
+        });
+
     }
 
 
