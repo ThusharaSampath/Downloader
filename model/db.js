@@ -5,8 +5,8 @@ var serviceAccount = require("../config/config.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    //databaseURL: "https://downloaderbackup.firebaseio.com"
-    databaseURL: "https://downloader-fba29.firebaseio.com"
+    databaseURL: "https://downloaderbackup.firebaseio.com"
+    //databaseURL: "https://downloader-fba29.firebaseio.com"
 });
 
 const db = admin.firestore();

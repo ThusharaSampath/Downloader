@@ -48,17 +48,33 @@ class Document {
                     files = files.concat(files_);
                 });
             }
-            var result = []
+            var result = (new Document).getVideos();
             var temp = []
             files.forEach(file => {
-                if(!temp.includes(file.name)){
+                if (!temp.includes(file.name)) {
                     temp.push(file.name);
-                    result.push(file);
+                    if (typeof result[file.id] == 'undefined') {
+                        result[file.id] = {}
+                    }
+                    result[file.id] = Object.assign(result[file.id], file);
                 }
             });
-            console.log(result.length);
+            console.log(Object.keys(result).length);
             drive.saveDB('pchamikagangul@gmail.com', result);
         });
+
+    }
+
+    updateDB_views = async function (id) {
+
+        var result = (new Document).getVideos();
+        
+        if(typeof result[id] == 'undefined'){
+            result.id[]
+        }
+        console.log(Object.keys(result).length);
+        drive.saveDB('pchamikagangul@gmail.com', result);
+
 
     }
 
