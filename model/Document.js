@@ -70,7 +70,7 @@ class Document {
         var result = (new Document).getVideos();
         
         if(typeof result[id] == 'undefined'){
-            result.id[]
+            result.id['']
         }
         console.log(Object.keys(result).length);
         drive.saveDB('pchamikagangul@gmail.com', result);
