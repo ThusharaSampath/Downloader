@@ -40,7 +40,7 @@ function createStatusBar(name){
     <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="25"
     aria-valuemin="0" aria-valuemax="100" id='p_${formatName(name)}'></div>
     </div>`
-    
+    $('#progress_wrapper').html($('#progress_wrapper').html()+html);
 }
 
 function formatName(name){
