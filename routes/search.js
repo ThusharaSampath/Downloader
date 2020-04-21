@@ -48,7 +48,7 @@ router.post('/', async function (req, res, next) {
     result = result.filter(d => d.count > 0);
     console.log(result.length);
 
-    res.end(JSON.stringify(result));
+    res.end(JSON.stringify(result.slice(0,20)));
   });
 
 
