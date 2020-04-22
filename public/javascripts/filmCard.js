@@ -87,7 +87,7 @@ function makeAcard(Json) {
         
       </h4>
       <h4 class="card__ability">
-        <button class="btn btn-secondary card__label"><i class="fa fa-eye"></i> Watch    </button>
+        <a class="btn btn-secondary card__label" target='_blank' href="${Json.url_view}"><i class="fa fa-eye"></i>Watch</a>
       </h4>
     </div>
   </figcaption>
