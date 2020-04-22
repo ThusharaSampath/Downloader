@@ -3,7 +3,7 @@ function test() {
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
-      tags: "money heist"
+      tags: "bad boys"
     },  // data to submit
     success: function (data, status, xhr) {
       var obj = JSON.parse(data);

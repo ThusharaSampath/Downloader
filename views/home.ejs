@@ -24,8 +24,13 @@
       <input type="text" class="form-control" placeholder="Direct Link" aria-label="Recipient's username"
         aria-describedby="basic-addon2" id='url'>
       <div class="input-group-append">
+        <%if(typeof data.token != 'undefined'){%>
         <button class="btn btn-outline-secondary bg-2" type="button" onclick="download()"><i class="fa fa-download"></i>
           Download</button>
+          <%}else{%>
+            <a class="btn btn-outline-secondary bg-2" type="button" href="/addDrive"><i class="fa fa-download"></i>
+              Download</a>
+          <%}%>
       </div>
     </div>
     <div class="form-check">

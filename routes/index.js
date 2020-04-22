@@ -92,10 +92,6 @@ router.get('/getFiles', async function (req, res, next) {
 
 
 
-
-
-
-
 router.get('/login', sessionCheckerForLog, function (req, res, next) {
   res.render('login', { title: 'login' });
 });
@@ -139,9 +135,9 @@ router.post('/signUp', sessionCheckerForLog, function (req, res, next) {
 router.get('/logout', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
     res.clearCookie('user_sid');
-    res.redirect('/login');
+    res.redirect('/');
   } else {
-    res.redirect('/login');
+    res.redirect('/');
   }
 });
 
