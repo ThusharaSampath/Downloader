@@ -1,5 +1,4 @@
 
-data = `{"1b8psGiOeATyQYjNAnLFehYlVu1VPQz_-":{"id":"1b8psGiOeATyQYjNAnLFehYlVu1VPQz_-","username":"","name":"[kamigami] hunter x hunter - 104 [x264 1280x720 aac sub(ch,jp)].mkv","size":"192183819","thumbnail":"https://lh3.googleusercontent.com/X8BPbQq6MGSqNRAe06kL8E1LFH35ual2wjClZeZ0HI8hn1f-p14y96JEECeU3qZQMEfv8Vtbdqs=s220","url_view":"https://drive.google.com/a/coung.aobe.nl/file/d/1b8psGiOeATyQYjNAnLFehYlVu1VPQz_-/view?usp=drivesdk","url":"https://drive.google.com/a/coung.aobe.nl/uc?id=1b8psGiOeATyQYjNAnLFehYlVu1VPQz_-&export=download","mimeType":"video/x-matroska","email":"wr1092337@swccd.edu","owner":"Wayne Rosales"},"1_n9XT_EpNVVA0QkJIFVwwftjQDI--4Qo":{"id":"1_n9XT_EpNVVA0QkJIFVwwftjQDI--4Qo","username":"","name":"[kamigami] hunter x hunter - 103 [x264 1280x720 aac sub(ch,jp)].mkv","size":"180231846","thumbnail":"https://lh3.googleusercontent.com/sVmZblp7-AK5w66w-3HR6KjpOASemo_Ce8as3OYJT21QO6gWe0NkFdZYtsloTjRbRvJSQZMtgyg=s220","url_view":"https://drive.google.com/a/coung.aobe.nl/file/d/1_n9XT_EpNVVA0QkJIFVwwftjQDI--4Qo/view?usp=drivesdk","url":"https://drive.google.com/a/coung.aobe.nl/uc?id=1_n9XT_EpNVVA0QkJIFVwwftjQDI--4Qo&export=download","mimeType":"video/x-matroska","email":"wr1092337@swccd.edu","owner":"Wayne Rosales"},"13Pn864zkt9NX1gz1RkUsJ38CF0ADZjbN":{"id":"13Pn864zkt9NX1gz1RkUsJ38CF0ADZjbN","username":"","name":"[kamigami] hunter x hunter - 102 [x264 1280x720 aac sub(ch,jp)].mkv","size":"173250018","thumbnail":"https://lh3.googleusercontent.com/aPzktbWHRQ25eMZItb1eF2gCAxYBwR6TQWyjPtpw_udga7fV_2QqWp83EExw-Ir9XgScrcpbbZs=s220","url_view":"https://drive.google.com/a/coung.aobe.nl/file/d/13Pn864zkt9NX1gz1RkUsJ38CF0ADZjbN/view?usp=drivesdk","url":"https://drive.google.com/a/coung.aobe.nl/uc?id=13Pn864zkt9NX1gz1RkUsJ38CF0ADZjbN&export=download","mimeType":"video/x-matroska","email":"wr1092337@swccd.edu","owner":"Wayne Rosales"},"11u-XhjjiEj7qr2KuopAAgelT_aBFdEDl":{"id":"11u-XhjjiEj7qr2KuopAAgelT_aBFdEDl","username":"","name":"[kamigami] hunter x hunter - 101 [x264 1280x720 aac sub(ch,jp)].mkv","size":"185115184","thumbnail":"https://lh3.googleusercontent.com/VJn64GTkjlizA6c4vj6_2r4tdCq1mMPpzj7l_2oKWK_wVk-V4e8AC4KPvHo-xoAqSfBuM14tSYk=s220","url_view":"https://drive.google.com/a/coung.aobe.nl/file/d/11u-XhjjiEj7qr2KuopAAgelT_aBFdEDl/view?usp=drivesdk","url":"https://drive.google.com/a/coung.aobe.nl/uc?id=11u-XhjjiEj7qr2KuopAAgelT_aBFdEDl&export=download","mimeType":"video/x-matroska","email":"wr1092337@swccd.edu","owner":"Wayne Rosales"}}`
 function test() {
   $.ajax('/search', {
     type: 'POST',  // http method
@@ -35,19 +34,19 @@ function test() {
 //         <p class="new">Dowunloads - </p>
 //         <p class="new">Rate - </p>
 //       </div>
-//       <div class="items cart">      
+//       <div class="items cart">
 //         <button type="button" class="btn btn-outline-info"><i class="fa fa-download"></i> Download</button>
 //         <button type="button" class="btn btn-outline-info"><i class="fa fa-book"></i> Watch</button>
 //       </div>
 //     </div>
 //   </div>
 //     <div>
-    
-    
-    
+
+
+
 //     </div>
 //   </div> 
-  
+
 //   `
 //   return html;
 // }
