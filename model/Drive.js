@@ -79,9 +79,14 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await listFiles(oAuth2Client, email).then(data => {
-                result = data
-            })
+            try {
+                await listFiles(oAuth2Client, email).then(data => {
+                    result = data
+                });
+            } catch{
+                result = []
+            }
+
 
         });
         return result;
@@ -107,7 +112,7 @@ class Drive {
         return result;
     }
 
-    async downloadFile(email,fileID) {
+    async downloadFile(email, fileID) {
         var result = []
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
@@ -122,7 +127,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await downloadFile(oAuth2Client,fileID);
+            await downloadFile(oAuth2Client, fileID);
         });
         return true;
     }
@@ -250,7 +255,7 @@ async function saveDB(auth, data = {}) {
         }
     }); */
 }
-async function downloadFile(auth,fileId) {
+async function downloadFile(auth, fileId) {
     const drive = google.drive({ version: 'v3', auth });
     var dest = fs.createWriteStream('data.txt');
 
