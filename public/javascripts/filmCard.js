@@ -1,4 +1,7 @@
 
+$(document).ready(() => {
+  test();
+});
 function test() {
   $.ajax('/search', {
     type: 'POST',  // http method
@@ -21,35 +24,7 @@ function test() {
 }
 
 
-// function makeAcard(Json) {
-//   html = `
-//   <div class="container column" style="background-image: url(${Json.thumbnail})">
-//   <div class="overlay">
-//     <div class = "items">
-//       <div class = "items head">
-//         <h7>${Json.name}</h7>
-//         <hr>
-//       </div>
-//       <div class = "items price">
-//         <p class="new">Dowunloads - </p>
-//         <p class="new">Rate - </p>
-//       </div>
-//       <div class="items cart">
-//         <button type="button" class="btn btn-outline-info"><i class="fa fa-download"></i> Download</button>
-//         <button type="button" class="btn btn-outline-info"><i class="fa fa-book"></i> Watch</button>
-//       </div>
-//     </div>
-//   </div>
-//     <div>
 
-
-
-//     </div>
-//   </div> 
-
-//   `
-//   return html;
-// }
 function makeAcard(Json) {
   html = `
   <figure class="card card--dark">

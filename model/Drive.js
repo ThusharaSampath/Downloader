@@ -107,7 +107,7 @@ class Drive {
         return result;
     }
 
-    async getDB(email) {
+    async downloadFile(email,fileID) {
         var result = []
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
@@ -122,7 +122,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await getDB(oAuth2Client);
+            await downloadFile(oAuth2Client,fileID);
         });
         return true;
     }
@@ -250,9 +250,8 @@ async function saveDB(auth, data = {}) {
         }
     }); */
 }
-async function getDB(auth) {
+async function downloadFile(auth,fileId) {
     const drive = google.drive({ version: 'v3', auth });
-    var fileId = '1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR';
     var dest = fs.createWriteStream('data.txt');
 
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
@@ -268,6 +267,8 @@ async function getDB(auth) {
         });
     return true;
 }
+
+
 async function listFiles(auth, email = '') {
     const drive = google.drive({ version: 'v3', auth });
     var result = []
