@@ -58,7 +58,7 @@ function makeAcard(Json) {
       
       <div class="card__abilities">
         <h4 class="card__ability">
-          <button class="btn btn-secondary card__label"><i class="fa fa-download"></i> Download</button>
+          <a class="btn btn-secondary card__label" target='_blank' href="${Json.url}"><i class="fa fa-download"></i> Download</a>
           
         </h4>
         <h4 class="card__ability">

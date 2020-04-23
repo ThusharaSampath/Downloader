@@ -327,7 +327,7 @@ function processList(files, email) {
             //size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
-            //url: file.webContentLink,
+            url: file.webContentLink,
             mimeType: file.mimeType,
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
