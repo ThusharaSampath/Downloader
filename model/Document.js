@@ -57,8 +57,8 @@ class Document {
                             result[file.id] = {}
                         }
                         result[file.id] = Object.assign(result[file.id], file);
-                        if(typeof result[id].view == 'undefined'){
-                            result[id]['view'] = 0
+                        if(typeof result[file.id].view == 'undefined'){
+                            result[file.id]['view'] = 0
                         }
                     }
                 });
