@@ -41,7 +41,15 @@ router.post('/', async function (req, res, next) {
 
     });
     result.sort(function (a, b) {
+      return a.name.localeCompare(b.name);;
+    });
+
+    result.sort(function (a, b) {
       return b.count - a.count;
+    });
+
+    result.sort(function (a, b) {
+      return b.view - a.view;
     });
 
 
@@ -60,7 +68,7 @@ router.post('/', async function (req, res, next) {
 
 /* GET search page. */
 router.get('/', sessionChecker, function (req, res, next) {
-  document.getDB();
+  //document.getDB();
   data = customer.userData;
   res.render('search', data);
 });

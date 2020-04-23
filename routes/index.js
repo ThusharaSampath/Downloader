@@ -33,6 +33,7 @@ var sessionCheckerForLog = (req, res, next) => {
 
 /* GET home page. */
 router.get('/', sessionChecker, function (req, res, next) {
+  document.getDB();
   data = customer.userData;
   res.render('home', data);
 });
