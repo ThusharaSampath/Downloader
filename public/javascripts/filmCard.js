@@ -1,12 +1,12 @@
 
 $(document).ready(() => {
-  test();
+  getFilms();
 });
-function test() {
+function getFilms() {
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
-      tags: "bad boys"
+      tags: ""
     },  // data to submit
     success: function (data, status, xhr) {
       var obj = JSON.parse(data);
