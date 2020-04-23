@@ -61,7 +61,7 @@ class Document {
                             result[file.id]['view'] = 0
                         }
                         if(typeof result[file.id].watch == 'undefined'){
-                            result[file.id]['watch'] = 0
+                            result[file.id]['down'] = 0
                         }
                     }
                 });
