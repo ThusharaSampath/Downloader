@@ -21,9 +21,15 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
-router.post('/', sessionChecker, function (req, res, next) {
+router.post('/view', sessionChecker, function (req, res, next) {
     data = customer.userData;
-    document.updateDB_views(req.body.id);
+    document.updateDB_details('view',req.body.id);
+    res.end('true');
+});
+
+router.post('/down', sessionChecker, function (req, res, next) {
+    data = customer.userData;
+    document.updateDB_details('down',req.body.id);
     res.end('true');
 });
 

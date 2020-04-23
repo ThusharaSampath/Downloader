@@ -23,7 +23,23 @@ function search() {
 
 function view(id) {
   alert(id);
-  $.ajax('/view', {
+  $.ajax('/count/view', {
+      type: 'POST',  // http method
+      data: {
+          id: id
+      },  // data to submit
+      success: function (data, status, xhr) {
+          console.log('viewed!');
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+          alert(errorMessage);
+      }
+  });
+}
+
+function down(id) {
+  alert(id);
+  $.ajax('/count/down', {
       type: 'POST',  // http method
       data: {
           id: id
@@ -58,7 +74,7 @@ function makeAcard(Json) {
       <table class="card__stats">
         <tbody><tr>
           <th><i class="fa fa-download"></i> Download</th>
-          <td>95</td>
+          <td>${Json.down}</td>
         </tr>
         <tr>
           <th><i class="fa fa-eye"></i> Watched</th>
@@ -74,7 +90,7 @@ function makeAcard(Json) {
       
       <div class="card__abilities">
         <h4 class="card__ability">
-          <a class="btn btn-secondary card__label" target='_blank' href="${Json.url}"><i class="fa fa-download"></i> Download</a>
+          <a class="btn btn-secondary card__label" target='_blank' href="${Json.url}" onClick="down('${Json.id}')"><i class="fa fa-download"></i> Download</a>
         </h4>
         <h4 class="card__ability">
           <a class="btn btn-secondary card__label" target='_blank' href="${Json.url_view}"  onClick="view('${Json.id}')"><i class="fa fa-eye"></i>Watch</a>

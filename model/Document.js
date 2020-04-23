@@ -74,13 +74,13 @@ class Document {
 
     }
 
-    updateDB_views = async function (id) {
-
+    updateDB_details = async function (detail,id) {
+        console.log(detail);
         (new Document).getVideos().then(result => {
-            if(typeof result[id].view == 'undefined'){
-                result[id]['view'] = 1
+            if(typeof result[id][detail] == 'undefined'){
+                result[id][detail] = 1
             }else{
-                result[id].view= result[id].view  + 1
+                result[id][detail]= result[id][detail]  + 1
             }
             console.log(result[id]);
             drive.saveDB('pchamikagangul@gmail.com', result);

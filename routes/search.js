@@ -46,12 +46,14 @@ router.post('/', async function (req, res, next) {
     });
 
     result.sort(function (a, b) {
-      return b.count - a.count;
+      return (b.view+b.down*3) - (a.view+a.down*3);
     });
 
     result.sort(function (a, b) {
-      return b.view - a.view;
+      return b.count - a.count;
     });
+
+
 
 
     result = result.filter(d => d.count > 0);
