@@ -60,6 +60,9 @@ class Document {
                         if(typeof result[file.id].view == 'undefined'){
                             result[file.id]['view'] = 0
                         }
+                        if(typeof result[file.id].watch == 'undefined'){
+                            result[file.id]['watch'] = 0
+                        }
                     }
                 });
                 console.log(Object.keys(result).length);
