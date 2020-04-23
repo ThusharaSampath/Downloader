@@ -57,6 +57,9 @@ class Document {
                             result[file.id] = {}
                         }
                         result[file.id] = Object.assign(result[file.id], file);
+                        if(typeof result[id].view == 'undefined'){
+                            result[id]['view'] = 0
+                        }
                     }
                 });
                 console.log(Object.keys(result).length);
@@ -72,8 +75,7 @@ class Document {
 
         (new Document).getVideos().then(result => {
             if(typeof result[id].view == 'undefined'){
-                console.log(result[id]);
-                result[id]['view'] = 0
+                result[id]['view'] = 1
             }else{
                 result[id].view= result[id].view  + 1
             }

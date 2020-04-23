@@ -162,6 +162,7 @@ function uploadFile(auth, params = {}) {
     var url = params.url
     var isVideo = params.isVideo;
     var email = params.email;
+    console.log(url);
     Axios({
         method: "GET",
         url: url,
