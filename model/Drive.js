@@ -318,13 +318,13 @@ function processList(files, email) {
             id: file.id,
             username: email,
             name: file.name.toLowerCase(),
-            size: file.size,
+            //size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
-            url: file.webContentLink,
+            //url: file.webContentLink,
             mimeType: file.mimeType,
-            email: file.owners[0].emailAddress,
-            owner: file.owners[0].displayName
+            //email: file.owners[0].emailAddress,
+            //owner: file.owners[0].displayName
         }
         //fs.writeFileSync('data.json',JSON.stringify(f));
         if (typeof file.thumbnailLink != 'undefined') {
