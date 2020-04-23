@@ -22,6 +22,7 @@ var sessionChecker = (req, res, next) => {
 };
 router.post('/', async function (req, res, next) {
   search = req.body.tags;
+  search = search.toLowerCase();
   var searchTags = search.split(/(?:,| )+/);
   await document.getVideos().then(async data => {
     //fs.writeFileSync('data.json',JSON.stringify(data));
