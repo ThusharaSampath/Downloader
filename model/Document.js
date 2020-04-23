@@ -60,7 +60,7 @@ class Document {
                         if(typeof result[file.id].view == 'undefined'){
                             result[file.id]['view'] = 0
                         }
-                        if(typeof result[file.id].watch == 'undefined'){
+                        if(typeof result[file.id].down == 'undefined'){
                             result[file.id]['down'] = 0
                         }
                     }
