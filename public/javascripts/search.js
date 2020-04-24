@@ -1,5 +1,7 @@
 
-
+$(document).ready(()=>{
+  search();
+});
 
 function search() {
   $.ajax('/search', {

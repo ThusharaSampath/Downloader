@@ -45,16 +45,18 @@
         </div>
         <%-include('filmCard.ejs',data)-%>
       </div>
-      <div class="pager">
-        <a href="#" id="btnPrevious" class="previous ">&laquo; Previous</a>
-        
-        <a href="#" id="pager1" class=" round">1</a>
-        <a href="#" id="pager2" class=" round">2</a>
-        <a href="#" id="pager3" class=" round">3</a>
 
-        <a href="#" id="btnNext" class="next ">Next &raquo;</a>
-      </div>
     </div>
+  </div>
+  <div id='rsltContainer'></div>    
+  <div class="pager">
+    <a href="#" id="btnPrevious" class="previous ">&laquo; Previous</a>
+    
+    <a href="#" id="pager1" class=" round">1</a>
+    <a href="#" id="pager2" class=" round">2</a>
+    <a href="#" id="pager3" class=" round">3</a>
+    <a href="#" id="btnNext" class="next ">Next &raquo;</a>
+  </div>   
   </body>
   <%-include('footer.ejs',data)-%>
 </html>
