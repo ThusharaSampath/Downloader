@@ -252,15 +252,15 @@
       width: 90%;
     }
 /* /////////////////////////////////////// */
-a {
+.pager .btn {
   text-decoration: none;
   display: inline-block;
   padding: 8px 16px;
 }
 
-a:hover {
+.pager .btn:hover {
   background-color: rgb(37, 0, 97);
-  color: black;
+  color: white;
 }
 
 .previous {
@@ -274,5 +274,7 @@ a:hover {
 }
 
 .round {
+  color: white;
+  background-color: rgb(66, 0, 97);
   border-radius: 50%;
 }
