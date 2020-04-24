@@ -5,6 +5,11 @@ var passwordHash = require('password-hash');
 class Customer {
   constructor() {
     this.loggedIn = false;
+    this.userData = {
+      fname : 'Guest',
+      lname : '',
+      loggedIn : false
+    }
   }
 
   async signUp(data) {
@@ -48,6 +53,7 @@ class Customer {
 
       if (value.length) {
         userData = value[0];
+        userData.loggedIn = true;
       }
     });
     this.loggedIn = true;

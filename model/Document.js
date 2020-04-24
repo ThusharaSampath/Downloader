@@ -20,8 +20,7 @@ class Document {
     }
 
     getDB = async function () {
-        await drive.getDB('pchamikagangul@gmail.com');
-
+        await drive.downloadFile('pchamikagangul@gmail.com',"1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR");
     }
 
     getVideos = async function () {
@@ -58,6 +57,12 @@ class Document {
                             result[file.id] = {}
                         }
                         result[file.id] = Object.assign(result[file.id], file);
+                        if(typeof result[file.id].view == 'undefined'){
+                            result[file.id]['view'] = 0
+                        }
+                        if(typeof result[file.id].down == 'undefined'){
+                            result[file.id]['down'] = 0
+                        }
                     }
                 });
                 console.log(Object.keys(result).length);
@@ -69,14 +74,13 @@ class Document {
 
     }
 
-    updateDB_views = async function (id) {
-
+    updateDB_details = async function (detail,id) {
+        console.log(detail);
         (new Document).getVideos().then(result => {
-            if(typeof result[id].view == 'undefined'){
-                console.log(result[id]);
-                result[id]['view'] = 0
+            if(typeof result[id][detail] == 'undefined'){
+                result[id][detail] = 1
             }else{
-                result[id].view= result[id].view  + 1
+                result[id][detail]= result[id][detail]  + 1
             }
             console.log(result[id]);
             drive.saveDB('pchamikagangul@gmail.com', result);

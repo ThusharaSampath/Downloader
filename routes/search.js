@@ -13,7 +13,7 @@ var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
   if (!(req.session.user && req.cookies.user_sid)) {
-    res.redirect('/login');
+    next();
   } else {
     customer.logBySession(req.session.userName).then(() => {
       next();
@@ -22,6 +22,7 @@ var sessionChecker = (req, res, next) => {
 };
 router.post('/', async function (req, res, next) {
   search = req.body.tags;
+  search = search.toLowerCase();
   var searchTags = search.split(/(?:,| )+/);
   await document.getVideos().then(async data => {
     //fs.writeFileSync('data.json',JSON.stringify(data));
@@ -41,8 +42,18 @@ router.post('/', async function (req, res, next) {
 
     });
     result.sort(function (a, b) {
+      return a.name.localeCompare(b.name);;
+    });
+
+    result.sort(function (a, b) {
+      return (b.view+b.down*3) - (a.view+a.down*3);
+    });
+
+    result.sort(function (a, b) {
       return b.count - a.count;
     });
+
+
 
 
     result = result.filter(d => d.count > 0);
@@ -60,7 +71,7 @@ router.post('/', async function (req, res, next) {
 
 /* GET search page. */
 router.get('/', sessionChecker, function (req, res, next) {
-  document.getDB();
+  //document.getDB();
   data = customer.userData;
   res.render('search', data);
 });

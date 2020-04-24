@@ -12,8 +12,10 @@ var document = new Document();
 var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
+  
   if (!(req.session.user && req.cookies.user_sid)) {
-    res.redirect('/login');
+    //not logged in
+    next();
   } else {
     customer.logBySession(req.session.userName).then(() => {
       next();
@@ -31,6 +33,7 @@ var sessionCheckerForLog = (req, res, next) => {
 
 /* GET home page. */
 router.get('/', sessionChecker, function (req, res, next) {
+  document.getDB();
   data = customer.userData;
   res.render('home', data);
 });
@@ -90,10 +93,6 @@ router.get('/getFiles', async function (req, res, next) {
 
 
 
-
-
-
-
 router.get('/login', sessionCheckerForLog, function (req, res, next) {
   res.render('login', { title: 'login' });
 });
@@ -137,9 +136,9 @@ router.post('/signUp', sessionCheckerForLog, function (req, res, next) {
 router.get('/logout', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
     res.clearCookie('user_sid');
-    res.redirect('/login');
+    res.redirect('/');
   } else {
-    res.redirect('/login');
+    res.redirect('/');
   }
 });
 

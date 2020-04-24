@@ -14,18 +14,27 @@
 
 <body class="bg-1">
 
-<div class="container bg-3">
-  <%-include('nav.ejs',data)-%>
-  
-  <div class="tableWrapper bg-3">
+  <div class="container bg-3">
+    <%-include('nav.ejs',data)-%>
+
+    <div class="tableWrapper bg-3">
 
 
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Direct Link" aria-label="Recipient's username"
-        aria-describedby="basic-addon2" id='url'>
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary bg-2" type="button" onclick="download()"><i class="fa fa-download"></i>
-          Download</button>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Direct Link" aria-label="Recipient's username"
+          aria-describedby="basic-addon2" id='url'>
+        <div class="input-group-append">
+          <%if(data.loggedIn != true){%>
+            <a class="btn btn-outline-secondary bg-2" type="button" href="/login"><i class="fa fa-download"></i>
+              Download</a>
+          <%}else if(typeof data.token == 'undefined'){%>
+            <a class="btn btn-outline-secondary bg-2" type="button" href="/addDrive"><i class="fa fa-download"></i>
+            Download</a>
+          <%}else{%> 
+            <button class="btn btn-outline-secondary bg-2" type="button" onclick="download()"><i
+              class="fa fa-download"></i>
+            Download</button>
+          <%}%>
       </div>
     </div>
     <div class="form-check">

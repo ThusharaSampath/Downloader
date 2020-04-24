@@ -79,9 +79,15 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await listFiles(oAuth2Client, email).then(data => {
-                result = data
-            })
+            try {
+                await listFiles(oAuth2Client, email).then(data => {
+                    result = data
+                });
+            } catch{
+                result = []
+                
+            }
+
 
         });
         return result;
@@ -107,7 +113,7 @@ class Drive {
         return result;
     }
 
-    async getDB(email) {
+    async downloadFile(email, fileID) {
         var result = []
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
@@ -122,7 +128,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await getDB(oAuth2Client);
+            await downloadFile(oAuth2Client, fileID);
         });
         return true;
     }
@@ -156,6 +162,7 @@ function uploadFile(auth, params = {}) {
     var url = params.url
     var isVideo = params.isVideo;
     var email = params.email;
+    console.log(url);
     Axios({
         method: "GET",
         url: url,
@@ -250,9 +257,8 @@ async function saveDB(auth, data = {}) {
         }
     }); */
 }
-async function getDB(auth) {
+async function downloadFile(auth, fileId) {
     const drive = google.drive({ version: 'v3', auth });
-    var fileId = '1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR';
     var dest = fs.createWriteStream('data.txt');
 
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
@@ -268,6 +274,8 @@ async function getDB(auth) {
         });
     return true;
 }
+
+
 async function listFiles(auth, email = '') {
     const drive = google.drive({ version: 'v3', auth });
     var result = []
@@ -317,13 +325,13 @@ function processList(files, email) {
             id: file.id,
             username: email,
             name: file.name.toLowerCase(),
-            size: file.size,
+            //size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
             url: file.webContentLink,
             mimeType: file.mimeType,
-            email: file.owners[0].emailAddress,
-            owner: file.owners[0].displayName
+            //email: file.owners[0].emailAddress,
+            //owner: file.owners[0].displayName
         }
         //fs.writeFileSync('data.json',JSON.stringify(f));
         if (typeof file.thumbnailLink != 'undefined') {

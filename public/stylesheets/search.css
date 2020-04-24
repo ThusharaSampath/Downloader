@@ -1,15 +1,4 @@
-.bg-1{
-    background-color: #383838;
-    color: white;
-    }
-.bg-2{
-    margin: auto;
-    margin-top: 5%;
-    padding: 2vh;
-    align-items: center;
-    height: 50%;
-    width: 90%;
-}
+
 
   .tableWrapper{
     margin-top: 5%;
@@ -43,6 +32,7 @@
         width: 95%;
       }
   }  
+<<<<<<< HEAD
   .bg-3{
   
     margin: auto;
@@ -244,3 +234,23 @@
       margin-bottom: 20px;
     }
   }
+=======
+  .bg-1{
+    background-color: #383838;
+    }
+    
+    .bg-2{
+      background: rgb(74,1,96);
+      background: linear-gradient(45deg, rgba(74,1,96,1) 0%, rgba(9,9,121,1) 100%); 
+    }
+    
+    .bg-3{
+      
+      margin: auto;
+      margin-top: 5%;
+      padding: 2vh;
+      align-items: center;
+      height: 50%;
+      width: 90%;
+    }
+>>>>>>> 70c73031059e6220d0034190354296f582110da3

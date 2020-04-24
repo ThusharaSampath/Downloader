@@ -1,5 +1,4 @@
-$(document).ready(() => {
-});
+
 
 function addDrive() {
     $.ajax('/addDrive', {
