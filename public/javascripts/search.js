@@ -1,4 +1,4 @@
-import { networkmanagement } from "googleapis/build/src/apis/networkmanagement";
+
 
 $(document).ready(()=>{
   search();
@@ -18,9 +18,8 @@ function search() {
           for (var key in obj) {
               html = html + makeAcard(obj[key]);
           }
-          $('#rsltContainer').html(html);
-         
-    
+          $('#rsltContainer').html(html);    
+          $('#pager').html(makePager(pageNo,pages)); 
       },
       error: function (jqXhr, textStatus, errorMessage) {
           alert(errorMessage);
@@ -107,21 +106,14 @@ function makeAcard(Json) {
 }
 function makePager(pageNo,pages){
 
-  if (pageNo==1) {
-    html=`<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>   
-    <script></script>   
-    for (i=1;i<4;i++) {  
-      <button id="pager${i}" class="btn round" value="${i}">${i}</button>
+  
+    html=`<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`   
+     
+    for (i=1;i<pages;i++) {  
+      html=html+`<button id="pager${i}" class="btn round" value="${i}">${i}</button>`
     }
-    <button id="btnNext" class="btn next ">Next &raquo;</button>`
-  } else {
-    html=`<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>   
-    <script></script>   
-    for (i=1;i<4;i++) {  
-      <button id="pager${i}" class="btn round" value="${i}">${i}</button>
-    }
-    <button id="btnNext" class="btn next ">Next &raquo;</button>`
-  }
+    html=html+`<button id="btnNext" class="btn next ">Next &raquo;</button>`
+  
  
   return html
 };
