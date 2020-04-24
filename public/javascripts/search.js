@@ -56,9 +56,6 @@ function down(id) {
 }
 
 
-
-
-
 function makeAcard(Json) {
     html = `
     <figure class="card card--dark">
