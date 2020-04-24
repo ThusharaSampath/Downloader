@@ -1,20 +1,8 @@
-var data='{"1cRncYvIEZBtIHsM9dxXbJ8R142zHeWU1":{"id":"1cRncYvIEZBtIHsM9dxXbJ8R142zHeWU1","username":"","name":"[kamigami] hunter x hunter - 06 [x264 1280x720 aac sub(ch,jp)].mkv","size":"204217311","thumbnail":"https://lh3.googleusercontent.com/YL5dFzUl7UjDRe7YppwzuP-co9csf9-JxdmyY6jSzNkuqnImEnE5733LqtzhjNljfTOjkzS_0-A=s220","url_view":"https://drive.google.com/a/coung.aobe.nl/file/d/1cRncYvIEZBtIHsM9dxXbJ8R142zHeWU1/view?usp=drivesdk","url":"https://drive.google.com/a/coung.aobe.nl/uc?id=1cRncYvIEZBtIHsM9dxXbJ8R142zHeWU1&export=download","mimeType":"video/x-matroska","email":"wr1092337@swccd.edu","owner":"Wayne Rosales"}}'
-
-
-
-
 $(document).ready(()=>{
   test();
 });
 function test() {
-  ///////////////////////////
-  const fs = require('fs')
-  fs.readFile('data.txt', (err, data) => {
-    if (err) throw err;
-  
-    console.log(data.toString());
-    
-  })
+
   ///////////////////////////
   $.ajax('/search', {
       type: 'POST',  // http method
