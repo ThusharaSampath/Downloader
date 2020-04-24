@@ -1,18 +1,21 @@
 var express = require('express');
 var fs = require('fs');
-var Document = require('../model/Document');
+
 var Customer = require('../model/Customer');
 var Drive = require('../model/Drive');
 
+var Document = require('../model/Document');
+var document = new Document();
 
 var router = express.Router();
 
 var customer = new Customer();
-var document = new Document();
+
 var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
-  
+
+  console.log(req.session);
   if (!(req.session.user && req.cookies.user_sid)) {
     //not logged in
     next();
@@ -33,7 +36,7 @@ var sessionCheckerForLog = (req, res, next) => {
 
 /* GET home page. */
 router.get('/', sessionChecker, function (req, res, next) {
-
+  document.getDB();
   data = customer.userData;
   res.render('home', data);
 });
@@ -81,9 +84,9 @@ router.post('/addDrive', sessionChecker, function (req, res, next) {
 
 
 router.get('/getFiles', async function (req, res, next) {
-  
 
-  
+
+
   /* res.render('getFiles', {
       files: files
     }); */

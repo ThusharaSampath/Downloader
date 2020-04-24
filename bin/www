@@ -32,7 +32,7 @@ server.on('listening', onListening);
 
 
 var io = require('socket.io')(server);
-var chat = require('../chat/chatini');
+var chat = require('../chat/chat');
 
 /**
  * socket io init

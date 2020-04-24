@@ -12,6 +12,11 @@ var document = new Document();
 var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
+    if (typeof req.session.db == 'undefined') {
+        
+        document.getDB();
+        req.session.db = true;
+      }
     if (!(req.session.user && req.cookies.user_sid)) {
         next();
     } else {

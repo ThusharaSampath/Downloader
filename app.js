@@ -6,6 +6,7 @@ var bodyParser = require('body-parser')
 var session = require('express-session');
 var logger = require('morgan');
 
+
 const fileUpload = require('express-fileupload');
 var indexRouter = require('./routes/index');
 var searchRouter = require('./routes/search');
@@ -19,8 +20,8 @@ app.use(fileUpload({
   createParentPath: true
 }));
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
 // view engine setup
@@ -37,23 +38,28 @@ app.use(cookieParser());
 
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
-    key: 'user_sid',
-    secret: 'somerandonstuffs',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 600000
-    }
+  key: 'user_sid',
+  secret: 'somerandonstuffs',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000
+  }
 }));
 
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
-      res.clearCookie('user_sid');
-      console.log("log out");
+    res.clearCookie('user_sid');
+    console.log("log out");
   }
-  
   next();
 });
+
+
+
+
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -62,12 +68,12 @@ app.use('/search', searchRouter);
 app.use('/count', countRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

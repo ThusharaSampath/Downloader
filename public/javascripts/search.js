@@ -1,6 +1,6 @@
 
 
-$(document).ready(()=>{
+$(document).ready(() => {
   search();
 });
 
@@ -8,60 +8,60 @@ function search() {
   var pageNo = 1;
   var pages = 5
   $.ajax('/search', {
-      type: 'POST',  // http method
-      data: {
-          tags: $('#tags').val()
-      },  // data to submit
-      success: function (data, status, xhr) {
-          var obj = JSON.parse(data);
-          var html = ''
-          for (var key in obj) {
-              html = html + makeAcard(obj[key]);
-          }
-          $('#rsltContainer').html(html);    
-          $('#pager').html(makePager(pageNo,pages)); 
-      },
-      error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
+    type: 'POST',  // http method
+    data: {
+      tags: $('#tags').val()
+    },  // data to submit
+    success: function (data, status, xhr) {
+      var obj = JSON.parse(data);
+      var html = ''
+      for (var key in obj) {
+        html = html + makeAcard(obj[key]);
       }
+      $('#rsltContainer').html(html);
+      $('#pager').html(makePager(pageNo, pages));
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
   });
 }
 
 function view(id) {
   alert(id);
   $.ajax('/count/view', {
-      type: 'POST',  // http method
-      data: {
-          id: id
-      },  // data to submit
-      success: function (data, status, xhr) {
-          console.log('viewed!');
-      },
-      error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
-      }
+    type: 'POST',  // http method
+    data: {
+      id: id
+    },  // data to submit
+    success: function (data, status, xhr) {
+      console.log('viewed!');
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
   });
 }
 
 function down(id) {
   alert(id);
   $.ajax('/count/down', {
-      type: 'POST',  // http method
-      data: {
-          id: id
-      },  // data to submit
-      success: function (data, status, xhr) {
-          console.log('viewed!');
-      },
-      error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
-      }
+    type: 'POST',  // http method
+    data: {
+      id: id
+    },  // data to submit
+    success: function (data, status, xhr) {
+      console.log('viewed!');
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
   });
 }
 
 
 function makeAcard(Json) {
-    html = `
+  html = `
     <figure class="card card--dark">
     <div class="card__image-container">
       <img src=${Json.thumbnail} alt="Umbreon" class="card__image">   
@@ -102,22 +102,21 @@ function makeAcard(Json) {
     </figcaption>
   </figure>
     `
-    return html;
+  return html;
 }
-function makePager(pageNo,pages){
+function makePager(pageNo, pages) {
 
-  
-    html=`<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`   
-     
-    for (i=1;i<pages;i++) {  
-      html=html+`<button id="pager${i}" class="btn round" value="${i}">${i}</button>`
-    }
-    html=html+`<button id="btnNext" class="btn next ">Next &raquo;</button>`
-  
- 
+  html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
+
+  for (i = 1; i < pages; i++) {
+    html = html + `<button id="pager${i}" class="btn round" value="${i}">${i}</button>`
+  }
+  html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
+
+
   return html
 };
-function makeButton(i){
-  btn=` <button id="pager${i}" class="btn round" value="${i}">${i}</button>`
+function makeButton(i) {
+  btn = ` <button id="pager${i}" class="btn round" value="${i}">${i}</button>`
   return btn;
 }
