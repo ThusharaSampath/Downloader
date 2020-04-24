@@ -12,8 +12,8 @@ var document = new Document();
 var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
+    var customer = new Customer();
     if (typeof req.session.db == 'undefined') {
-        
         document.getDB();
         req.session.db = true;
       }
