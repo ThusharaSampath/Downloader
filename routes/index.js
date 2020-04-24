@@ -15,7 +15,7 @@ var drive = new Drive();
 
 var sessionChecker = (req, res, next) => {
 
-  console.log(req.session);
+  console.log(customer.userData);
   if (!(req.session.user && req.cookies.user_sid)) {
     //not logged in
     next();
