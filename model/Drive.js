@@ -53,12 +53,13 @@ class Drive {
             client_id, client_secret, redirect_uris[0]);
 
 
-        oAuth2Client.getToken(code_, (err, token) => {
+        oAuth2Client.getToken(code, (err, token) => {
             if (err) return console.error('Error retrieving access token', err);
             oAuth2Client.setCredentials(token);
             // Store the token to disk for later program executions
+            console.log(token);
             db.update('customer', customer.userData.email, {
-                token: code_
+                token: token
             });
         });
 
