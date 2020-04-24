@@ -52,3 +52,195 @@
     height: 50%;
     width: 90%;
   }
+
+  /* ////////////////////////////// */
+  body {
+    background-color: #fef5df;
+  }
+  
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700");
+  body {
+    font-family: "Open Sans", Helvetica, sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  img {
+    /* max-height: 150px; */
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0px;
+    display: inline-block;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0;
+    font-weight: 400;
+  }
+  
+  .card {
+    display: inline-block;
+    width: 300px;
+    padding: 0.5em;
+    border-radius: 12px;
+    margin: 10px;
+    background: #ddd;
+    text-align: left;
+    box-shadow: 0px 5px 20px -10px #111111;
+    position: relative;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  .card__caption {
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 1em;
+    position: relative;
+    border-radius: 0 0 3px 3px;
+  }
+  .card__image-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 0.5em 0.5em 0;
+    border-radius: 0.5px 0.5px 0 0;
+    overflow: hidden;
+  }
+  .card__type {
+    font-size: 1em;  
+    position: absolute;
+    top: 0;
+    right: 1em;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+    letter-spacing: 0.1em;
+    padding: 0.25em;
+    line-height: 1;
+    border-radius: 2px;
+    background: #bbbbbb;
+  }
+  .card__label {
+    width: 90px;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .card__name {
+    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+    text-align: center;
+    font-size: 1em;
+    
+    letter-spacing: 0.02em;
+    font-weight: bold;
+  }
+  .card__stats {
+    margin: 1em 0;
+    width: 100%;
+    margin-bottom: 0px;
+  }
+  .card__stats th {
+    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+    text-align: right;
+    font-weight: 300;
+    text-align: left;
+  }
+  .card__stats td{
+      text-align: right;
+  }
+  .card__stats th,
+  .card__stats td {
+    width: 50%;
+    padding: 0.25em 0.5em 0;
+   
+  }
+  .card__abilities {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  .card__ability {
+    margin-top: 1em;
+    -webkit-box-flex: 1;
+    flex: 1 0;
+  }
+  .card--normal {
+    background: linear-gradient(110deg, #fdbb2d 0%, #3a1c71 100%);
+    box-shadow: 0px 5px 20px -10px #3a1c71;
+  }
+  .card--normal .card__type {
+    background-color: #c08a53;
+  }
+  
+  .card--dark {
+    background: linear-gradient(20deg, #191919 0%, #100b32 33%, #5c0249 100%);
+  }
+  .card--dark .card__type {
+    background: #5c0249;
+  }
+  
+  .card:hover {
+  
+    z-index: 5;
+    box-shadow: 0px 13px 30px -15px #000000;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  
+  .card:hover .card__abilities{
+      transition-delay:  0.2s;
+      opacity: 1;
+  }
+  
+  /* //////////////////////////////////////////////// */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 2px;
+  }
+  
+  /* Remove extra left and right margins, due to padding in columns */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    min-width: 100px;
+  }
+  
+  /* Responsive columns - one column layout (vertical) on small screens */
+  @media screen and (max-width: 400px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }

@@ -28,9 +28,9 @@ h5 {
 
 .card {
   display: inline-block;
-  width: 250px;
-  padding: 1em;
-  border-radius: 15px;
+  width: 300px;
+  padding: 0.5em;
+  border-radius: 12px;
   margin: 10px;
   background: #ddd;
   text-align: left;
@@ -69,7 +69,7 @@ h5 {
   background: #bbbbbb;
 }
 .card__label {
-  width: 90px;
+  width: 110px;
   font-size: 10px;
   text-transform: uppercase;
   font-weight: 400;
