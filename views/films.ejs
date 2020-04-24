@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Downloader</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="/stylesheets/search.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="/javascripts/search.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body class="bg-1">
+  <div class="container bg-3">
+    <%-include('nav.ejs',data)-%>
+
+    <div class="tableWrapper bg-3">
+      <%-include('filmCard.ejs',data)-%>
+    </div>
+  </div>
+
+</body>
+<%-include('footer.ejs',data)-%>
+
+</html>
