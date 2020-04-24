@@ -2,13 +2,10 @@ var data='{"1cRncYvIEZBtIHsM9dxXbJ8R142zHeWU1":{"id":"1cRncYvIEZBtIHsM9dxXbJ8R14
 
 
 
-<<<<<<< HEAD
-=======
 
 $(document).ready(()=>{
   test();
 });
->>>>>>> 70c73031059e6220d0034190354296f582110da3
 function test() {
   ///////////////////////////
   const fs = require('fs')
@@ -70,21 +67,6 @@ function down(id) {
   });
 }
 
-<<<<<<< HEAD
-
-function makeAcard(Json) {
-  html = `
-  <figure class="card card--dark">
-  <div class="card__image-container">
-    <img src=${Json.thumbnail} alt="Umbreon" class="card__image">   
-  </div>
-  
-  <figcaption class="card__caption">
-    <h1 class="card__name">${Json.name}</h1>
-=======
->>>>>>> 70c73031059e6220d0034190354296f582110da3
-
-
 
 
 function makeAcard(Json) {
@@ -111,18 +93,6 @@ function makeAcard(Json) {
           <td>${Json.view}</td>
         </tr>
         
-<<<<<<< HEAD
-      </h4>
-      <h4 class="card__ability">
-        <button class="btn btn-secondary card__label"><i class="fa fa-eye"></i> Watch    </button>
-      </h4>
-    </div>
-  </figcaption>
-</figure>
-  `
-  console.log(Json.name)
-  return html;
-=======
         <tr>
           <th><i class="fa fa-star"></i> Rating</th>
           <td>110</td>
@@ -142,5 +112,4 @@ function makeAcard(Json) {
   </figure>
     `
     return html;
->>>>>>> 70c73031059e6220d0034190354296f582110da3
 }
