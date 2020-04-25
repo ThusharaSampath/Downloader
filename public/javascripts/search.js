@@ -20,7 +20,10 @@ function search() {
       }
       $('#rsltContainer').html(html);
       $('#pager').html(makePager(pageNo, pages));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1f68c763739abf5eb7b503b7a495900b1b0638a4
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
@@ -106,6 +109,7 @@ function makeAcard(Json) {
   return html;
 }
 function makePager(pageNo, pages) {
+<<<<<<< HEAD
 
   if (pageNo != 1 && pageNo != pages & pages > 3) {
     html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
@@ -160,6 +164,17 @@ function makePager(pageNo, pages) {
     html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
   }
 
+=======
+
+  html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
+
+  for (i = 1; i < pages; i++) {
+    html = html + `<button id="pager${i}" class="btn round" value="${i}">${i}</button>`
+  }
+  html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
+
+
+>>>>>>> 1f68c763739abf5eb7b503b7a495900b1b0638a4
   return html
 };
 function makeButton(i) {
