@@ -1,67 +1,68 @@
 
 
-$(document).ready(()=>{
+$(document).ready(() => {
   search();
 });
 
 function search() {
-  var pageNo = 1;
-  var pages = 5
+  var pageNo = 2;
+  var pages = 3;
   $.ajax('/search', {
-      type: 'POST',  // http method
-      data: {
-          tags: $('#tags').val()
-      },  // data to submit
-      success: function (data, status, xhr) {
-          var obj = JSON.parse(data);
-          var html = ''
-          for (var key in obj) {
-              html = html + makeAcard(obj[key]);
-          }
-          $('#rsltContainer').html(html);    
-          $('#pager').html(makePager(pageNo,pages)); 
-      },
-      error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
+    type: 'POST',  // http method
+    data: {
+      tags: $('#tags').val()
+    },  // data to submit
+    success: function (data, status, xhr) {
+      var obj = JSON.parse(data);
+      var html = ''
+      for (var key in obj) {
+        html = html + makeAcard(obj[key]);
       }
+      $('#rsltContainer').html(html);
+      $('#pager').html(makePager(pageNo, pages));
+
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
   });
 }
 
 function view(id) {
   alert(id);
   $.ajax('/count/view', {
-      type: 'POST',  // http method
-      data: {
-          id: id
-      },  // data to submit
-      success: function (data, status, xhr) {
-          console.log('viewed!');
-      },
-      error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
-      }
+    type: 'POST',  // http method
+    data: {
+      id: id
+    },  // data to submit
+    success: function (data, status, xhr) {
+      console.log('viewed!');
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
   });
 }
 
 function down(id) {
   alert(id);
   $.ajax('/count/down', {
-      type: 'POST',  // http method
-      data: {
-          id: id
-      },  // data to submit
-      success: function (data, status, xhr) {
-          console.log('viewed!');
-      },
-      error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
-      }
+    type: 'POST',  // http method
+    data: {
+      id: id
+    },  // data to submit
+    success: function (data, status, xhr) {
+      console.log('viewed!');
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
   });
 }
 
 
 function makeAcard(Json) {
-    html = `
+  html = `
     <figure class="card card--dark">
     <div class="card__image-container">
       <img src=${Json.thumbnail} alt="Umbreon" class="card__image">   
@@ -102,22 +103,66 @@ function makeAcard(Json) {
     </figcaption>
   </figure>
     `
-    return html;
+  return html;
 }
-function makePager(pageNo,pages){
+function makePager(pageNo, pages) {
 
+  if (pageNo != 1 && pageNo != pages & pages > 3) {
+    html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
+    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
+    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+    html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
+    html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
+  } else if (pageNo == 1 && pages > 3) {
+    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+    html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
+    html = html + `<button id="pager${pageNo + 2}" class="btn round" value="${pageNo + 2}">${pageNo + 2}</button>`
+    html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
+
+  } else if (pageNo == 1 && pages == 1) {
+    html = ``
+
+    html = html + `<button id="pager1" class="btn round" value="1">1</button>`
+  } else if (pageNo == 1 && pages == 2) {
+    html = ``
+
+    html = html + `<button id="pager1" class="btn round" value="1">1</button>`
+    html = html + `<button id="pager2" class="btn round" value="2">2</button>`
+  } else if (pageNo == 1 && pages == 3) {
+    html = ``
+
+    html = html + `<button id="pager1" class="btn round" value="1">1</button>`
+    html = html + `<button id="pager2" class="btn round" value="2">2</button>`
+    html = html + `<button id="pager3" class="btn round" value="3">3</button>`
   
-    html=`<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`   
-     
-    for (i=1;i<pages;i++) {  
-      html=html+`<button id="pager${i}" class="btn round" value="${i}">${i}</button>`
-    }
-    html=html+`<button id="btnNext" class="btn next ">Next &raquo;</button>`
-  
- 
+  } else if (pageNo != 1 && pageNo == pages && pages > 3) {
+    html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
+    html = html + `<button id="pager${pageNo - 2}" class="btn round" value="${pageNo - 2}">${pageNo - 2}</button>`
+    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
+    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+
+  }else if (pageNo != 1 && pageNo == pages && pages==3) {
+    html = ``
+    html = html + `<button id="pager${pageNo - 2}" class="btn round" value="${pageNo - 2}">${pageNo - 2}</button>`
+    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
+    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+
+  }else if (pageNo != 1 && pageNo == pages && pages==2) {
+    
+    html = ``
+    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
+    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+
+  }else if (pageNo ==2 && pages==3) {
+    html = ``
+    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
+    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+    html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
+  }
+
   return html
 };
-function makeButton(i){
-  btn=` <button id="pager${i}" class="btn round" value="${i}">${i}</button>`
+function makeButton(i) {
+  btn = ` <button id="pager${i}" class="btn round" value="${i}">${i}</button>`
   return btn;
 }
