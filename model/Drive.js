@@ -57,7 +57,6 @@ class Drive {
             if (err) return console.error('Error retrieving access token', err);
             oAuth2Client.setCredentials(token);
             // Store the token to disk for later program executions
-            console.log(token);
             db.update('customer', customer.userData.email, {
                 token: token
             });
