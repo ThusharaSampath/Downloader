@@ -11,6 +11,7 @@ const fileUpload = require('express-fileupload');
 var indexRouter = require('./routes/index');
 var searchRouter = require('./routes/search');
 var countRouter = require('./routes/count');
+var downloadRouter = require('./routes/download');
 
 var app = express();
 
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/search', searchRouter);
 app.use('/count', countRouter);
+app.use('/download', downloadRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

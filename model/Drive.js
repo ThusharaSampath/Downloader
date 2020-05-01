@@ -85,7 +85,7 @@ class Drive {
                 });
             } catch{
                 result = []
-                
+
             }
 
 
@@ -129,6 +129,28 @@ class Drive {
 
             oAuth2Client.setCredentials(token);
             await downloadFile(oAuth2Client, fileID);
+        });
+        return true;
+    }
+    async download(fileID, res) {
+        var result = []
+        var data = fs.readFileSync('data.txt');
+        data = JSON.parse(data);
+        var email = data[fileID].username;
+        await db.getToken(email).then(async token => {
+            var content = fs.readFileSync('config/credentials.json');
+            if (typeof token == 'undefined') {
+                return [];
+            }
+
+            const { client_secret, client_id, redirect_uris } = JSON.parse(content).installed;
+            const oAuth2Client = new google.auth.OAuth2(
+                client_id, client_secret, redirect_uris[0]);
+
+            // Check if we have previously stored a token.
+
+            oAuth2Client.setCredentials(token);
+            await download(oAuth2Client, fileID, res);
         });
         return true;
     }
@@ -275,6 +297,25 @@ async function downloadFile(auth, fileId) {
     return true;
 }
 
+async function download(auth, fileId, dest) {
+    const drive = google.drive({ version: 'v3', auth });
+    await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
+        async function (err, res) {
+            dest.set({
+                'Content-Type': 'application/octet-stream',
+                'Content-Disposition': 'attachment; filename=video.mp4'
+            });
+            await res.data
+                .on('end', () => {
+                    console.log('downloded');
+                })
+                .on('error', err => {
+                    console.log('Error', err);
+                })
+                .pipe(dest);
+        });
+    return true;
+}
 
 async function listFiles(auth, email = '') {
     const drive = google.drive({ version: 'v3', auth });
