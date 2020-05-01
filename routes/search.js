@@ -70,8 +70,8 @@ router.post('/', async function (req, res, next) {
 
     R = {
       cards : result.slice(20*Page,20*(Page+1)),
-      CPage : parseInt(Page),
-      Pages : Math.round(result.length/20)
+      CPage : parseInt(Page)+1,
+      Pages : Math.round(result.length/20)+1
     }
 
     res.end(JSON.stringify(R));
