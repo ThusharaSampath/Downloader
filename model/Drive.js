@@ -369,7 +369,7 @@ function processList(files, email) {
             //size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
-            url: file.webContentLink,
+            url: "/download/"+file.id,
             mimeType: file.mimeType,
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
