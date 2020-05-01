@@ -1,5 +1,6 @@
 
 
+
 $(document).ready(() => {
   search();
 });
@@ -37,7 +38,7 @@ function Search(ID) { //search next and previous
     type: 'POST',  // http method
     data: {
       tags: $('#tags').val(),
-      page : ID
+      page : ID-1
 
     },  // data to submit
     success: function (data, status, xhr) {
