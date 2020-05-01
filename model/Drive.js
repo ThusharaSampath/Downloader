@@ -250,7 +250,7 @@ function uploadFile(auth, params = {}) {
 
 async function saveDB(auth, data = {}) {
 
-    //fs.writeFileSync('data.txt', JSON.stringify(data));
+    fs.writeFileSync('data.txt', JSON.stringify(data));
     var id = "1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR"
 
     const drive = google.drive({ version: 'v3', auth });
