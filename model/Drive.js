@@ -231,7 +231,7 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name = getName(url, 'false', headers['content-disposition']);
+        var name = getName(url, 'false','');
 
         data.on('data', chunk => {
             sum = sum + chunk.length
@@ -418,7 +418,6 @@ function getName(url, isVideo, header) {
     } catch{ }
 
     HEADER.forEach(element => {
-        console.log(element);
 
         try {
             e = element.trim().split('=');
