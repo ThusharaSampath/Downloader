@@ -20,10 +20,6 @@ function search() {
       }
       $('#rsltContainer').html(html);
       $('#pager').html(makePager(pageNo, pages));
-<<<<<<< HEAD
-
-=======
->>>>>>> 1f68c763739abf5eb7b503b7a495900b1b0638a4
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
@@ -137,26 +133,26 @@ function makePager(pageNo, pages) {
     html = html + `<button id="pager1" class="btn round" value="1">1</button>`
     html = html + `<button id="pager2" class="btn round" value="2">2</button>`
     html = html + `<button id="pager3" class="btn round" value="3">3</button>`
-  
+
   } else if (pageNo != 1 && pageNo == pages && pages > 3) {
     html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
     html = html + `<button id="pager${pageNo - 2}" class="btn round" value="${pageNo - 2}">${pageNo - 2}</button>`
     html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
     html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
 
-  }else if (pageNo != 1 && pageNo == pages && pages==3) {
+  } else if (pageNo != 1 && pageNo == pages && pages == 3) {
     html = ``
     html = html + `<button id="pager${pageNo - 2}" class="btn round" value="${pageNo - 2}">${pageNo - 2}</button>`
     html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
     html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
 
-  }else if (pageNo != 1 && pageNo == pages && pages==2) {
-    
+  } else if (pageNo != 1 && pageNo == pages && pages == 2) {
+
     html = ``
     html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
     html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
 
-  }else if (pageNo ==2 && pages==3) {
+  } else if (pageNo == 2 && pages == 3) {
     html = ``
     html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
     html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
