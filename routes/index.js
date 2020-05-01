@@ -70,7 +70,7 @@ router.get('/HowTo', sessionChecker, function (req, res, next) {
 
 router.get('/film', sessionChecker, function (req, res, next) {
   data = customer.userData;
-  res.render('filmCard', data);
+  res.render('films', data);
 });
 
 
