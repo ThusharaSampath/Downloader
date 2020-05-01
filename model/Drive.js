@@ -196,9 +196,11 @@ function uploadFile(auth, params = {}) {
         headers = response.headers;
 
         const drive = google.drive({ version: 'v3', auth });
+
         var fileMetadata = {
-            'name': getName(url, isVideo)
+            'name': getName(url, isVideo, headers['content-disposition'])
         };
+
         if (isVideo == 'true') {
             var type = 'video/mp4'
         } else {
@@ -341,7 +343,7 @@ async function getList(drive, pageToken, email) {
             console.log('processing..........');
             var data = processList(files, email);
             if (res.data.nextPageToken) {
-                await getList(drive, res.data.nextPageToken,email).then(d => {
+                await getList(drive, res.data.nextPageToken, email).then(d => {
                     result = d.concat(data);
                 })
             } else {
@@ -370,7 +372,7 @@ function processList(files, email) {
             //size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
-            url: "/download/"+file.id,
+            url: "/download/" + file.id,
             mimeType: file.mimeType,
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
@@ -394,7 +396,8 @@ function getFile(auth, fileId) {
 }
 
 
-function getName(url, isVideo) {
+function getName(url, isVideo, header) {
+
 
 
     var url = url.split('?')[0];
@@ -408,6 +411,14 @@ function getName(url, isVideo) {
     if (isVideo == 'true') {
         name = name + '.mp4'
     }
+    HEADER = header.split(';');
+    HEADER.forEach(element => {
+        e = element.splt('=')
+        if (e[0] == 'filename') {
+            name = e[1]
+        }
+    });
+
     console.log('inside getName', isVideo, " : ", name);
     return name
 }
