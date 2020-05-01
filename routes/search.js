@@ -28,9 +28,11 @@ var sessionChecker = (req, res, next) => {
   }
 };
 router.post('/', async function (req, res, next) {
-  search = req.body.tags;
-  search = search.toLowerCase();
-  var searchTags = search.split(/(?:,| )+/);
+  
+  Search = req.body.tags;
+  Search = Search.toLowerCase();
+  Page = req.body.page;
+  var searchTags = Search.split(/(?:,| )+/);
   await document.getVideos().then(async data => {
     //fs.writeFileSync('data.json',JSON.stringify(data));
     var result = []
@@ -66,7 +68,14 @@ router.post('/', async function (req, res, next) {
     result = result.filter(d => d.count > 0);
     console.log(result.length);
 
-    res.end(JSON.stringify(result.slice(0,20)));
+
+    R = {
+      cards : result.slice(20*Page,20*(Page+1)),
+      CPage : Page,
+      Pages : Math.round(result.length/20)
+    }
+
+    res.end(JSON.stringify(R));
   });
 
 
