@@ -5,8 +5,6 @@ $(document).ready(() => {
 });
 
 function search() {
-  var pageNo = 2;
-  var pages = 3;
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
@@ -19,7 +17,7 @@ function search() {
         html = html + makeAcard(obj[key]);
       }
       $('#rsltContainer').html(html);
-      $('#pager').html(makePager(pageNo, pages));
+      $('#pager').html(makePager(obj.pageNo, obj.pages));
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
