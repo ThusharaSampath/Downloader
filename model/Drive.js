@@ -411,13 +411,24 @@ function getName(url, isVideo, header) {
     if (isVideo == 'true') {
         name = name + '.mp4'
     }
-    HEADER = header.split(';');
+    HEADER = []
+    try {
+        HEADER = header.split(';');
+    } catch{ }
+
     HEADER.forEach(element => {
-        e = element.splt('=')
-        if (e[0] == 'filename') {
-            name = e[1]
-        }
+        console.log(element);
+
+        try {
+            e = element.trim().split('=');
+            if (e[0] == 'filename') {
+                name = e[1]
+            }
+        } catch{ }
+
     });
+
+
 
     console.log('inside getName', isVideo, " : ", name);
     return name
