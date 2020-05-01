@@ -126,3 +126,6 @@ svg {
 .bg-1{
     background-color: #383838;
     }    
+.bg-2{
+    border: 2px solid purple;
+}    

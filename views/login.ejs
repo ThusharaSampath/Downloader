@@ -15,14 +15,14 @@
       <div class="login-form">
           <div class="form-group">
             <label>Email</label>
-            <input id="email" type="email" class="form-control" placeholder="email" required>
+            <input id="email" type="email" class="form-control bg-2" placeholder="email" required>
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input id="password" type="password" class="form-control" placeholder="Password" required>
+            <input id="password" type="password" class="form-control bg-2" placeholder="Password" required>
           </div>
-          <button class="btn btn-black" id=login onclick="login()">Login</button>
-          <button class="btn btn-secondary" if=signup  onclick="location.href = '/signup';">Sign Up</button>
+          <button class="btn btn-secondary" id=login onclick="login()" style="background: rgb(124, 1, 124); color: white;">Login</button>
+          <button class="btn btn-secondary" if=signup  onclick="location.href = '/signup';" style="background: rgb(97, 1, 97);">Sign Up</button>
       </div>
     </div>
     <%-include('footer.ejs',data)-%> 
