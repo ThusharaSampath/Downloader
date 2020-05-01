@@ -40,7 +40,7 @@ class Document {
 
     updateDB = async function () {
         var files = [];
-        (new Document()).getDB();
+        //(new Document()).getDB();
         await (new Document()).getFiles().then(async data => {
             for (let i = 0; i < data.length; i++) {
                 const file = data[i];
