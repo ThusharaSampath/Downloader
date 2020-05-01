@@ -27,7 +27,7 @@ var sessionChecker = (req, res, next) => {
   }
 };
 router.post('/', async function (req, res, next) {
-  
+
   Search = req.body.tags;
   Search = Search.toLowerCase();
   Page = req.body.page;
@@ -49,12 +49,19 @@ router.post('/', async function (req, res, next) {
       result.push(video);
 
     });
+
+    result = result.filter(d => d.count > 0);
+
     result.sort(function (a, b) {
       return a.name.localeCompare(b.name);;
     });
 
+    result = result.sort(function (a, b) {
+      return Date.parse(b.modifiedTime) - Date.parse(a.modifiedTime)
+    });
+
     result.sort(function (a, b) {
-      return (b.view+b.down*3) - (a.view+a.down*3);
+      return (b.view + b.down * 3) - (a.view + a.down * 3);
     });
 
     result.sort(function (a, b) {
@@ -62,17 +69,14 @@ router.post('/', async function (req, res, next) {
     });
 
 
-
-
-    result = result.filter(d => d.count > 0);
     console.log(result.length);
 
     Page = parseInt(Page)
 
     R = {
-      cards : result.slice(20*Page,20*(Page+1)-1),
-      CPage : Page,
-      Pages : Math.round(result.length/20)+1
+      cards: result.slice(20 * Page, 20 * (Page + 1) - 1),
+      CPage: Page,
+      Pages: Math.round(result.length / 20) + 1
     }
 
     res.end(JSON.stringify(R));
