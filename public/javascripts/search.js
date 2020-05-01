@@ -195,7 +195,3 @@ function makePager(pageNo, pages) {
 
   return html
 };
-// Material Select Initialization
-$(document).ready(function() {
-  $('.mdb-select').materialSelect();
-  });

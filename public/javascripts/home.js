@@ -46,3 +46,12 @@ function createStatusBar(name){
 function formatName(name){
     return name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 }
+
+//////////////////////////////////////////////////
+$('.buy').click(function(){
+    $('.bottom').addClass("clicked");
+  });
+  
+  $('.remove').click(function(){
+    $('.bottom').removeClass("clicked");
+  });
