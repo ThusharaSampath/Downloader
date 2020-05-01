@@ -165,17 +165,6 @@ function makePager(pageNo, pages) {
     html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
   }
 
-
-
-  html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
-
-  for (i = 1; i < pages; i++) {
-    html = html + `<button id="pager${i}" class="btn round" value="${i}">${i}</button>`
-  }
-  html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
-
-
-
   return html
 };
 function makeButton(i) {
