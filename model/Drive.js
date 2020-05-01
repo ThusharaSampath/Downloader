@@ -297,6 +297,7 @@ async function downloadFile(auth, fileId) {
     return true;
 }
 
+
 async function download(auth, fileId, dest) {
     const drive = google.drive({ version: 'v3', auth });
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
