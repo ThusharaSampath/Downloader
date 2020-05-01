@@ -302,7 +302,7 @@ async function download(auth, fileId, dest) {
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
         async function (err, res) {
             dest.set({
-                'Content-Type': 'application/octet-stream',
+                'Content-Type': 'video/mp4',
                 'Content-Disposition': 'attachment; filename=video.mp4'
             });
             await res.data
