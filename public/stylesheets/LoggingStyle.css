@@ -120,3 +120,6 @@ svg {
 @keyframes stroke-offset{
 	100% {stroke-dashoffset: -35%;}
 }
+.bg{
+    background-image:  linear-gradient(45deg, rgb(1, 20, 63) 0%, rgba(80,16,148,1) 44%, rgb(128, 14, 177) 100%); 
+    }
