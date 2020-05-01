@@ -15,7 +15,7 @@ function search() {
     success: function (data, status, xhr) {
       var D = JSON.parse(data);
       var obj = D.cards;
-      pageNo = D.CPage;
+      pageNo = D.CPage+1;
       pages = D.Pages;
       console.log(D)
       var html = ''
@@ -43,7 +43,7 @@ function Search(ID) { //search next and previous
     success: function (data, status, xhr) {
       var D = JSON.parse(data);
       var obj = D.cards;
-      pageNo = D.CPage;
+      pageNo = D.CPage +1;
       pages = D.Pages;
       console.log(D)
       var html = ''
@@ -194,7 +194,3 @@ function makePager(pageNo, pages) {
 
   return html
 };
-function makeButton(i) {
-  btn = ` <button id="${i}" class="btn round" value="${i}">${i}</button>`
-  return btn;
-}
