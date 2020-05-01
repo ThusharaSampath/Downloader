@@ -5,6 +5,8 @@ $(document).ready(() => {
 });
 
 function search() {
+  pageNo=20
+  pages=25
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
@@ -22,7 +24,36 @@ function search() {
         html = html + makeAcard(obj[key]);
       }
       $('#rsltContainer').html(html);
-      $('#pager').html(makePager(obj.pageNo, obj.pages));
+      $('#pager').html(makePager(pageNo,pages));
+      
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      alert(errorMessage);
+    }
+  });
+}
+function Search(id) { //search next and previous 
+
+  $.ajax('/search', {
+    type: 'POST',  // http method
+    data: {
+      tags: $('#tags').val(),
+      page : $('#tags').val(),
+
+    },  // data to submit
+    success: function (data, status, xhr) {
+      var D = JSON.parse(data);
+      var obj = D.cards;
+      pageNo = D.CPage;
+      pages = D.Pages;
+      console.log(D)
+      var html = ''
+      for (var key in obj) {
+        html = html + makeAcard(obj[key]);
+      }
+      $('#rsltContainer').html(html);
+      // $('#pager').html(makePager(obj.pageNo, obj.pages));
+      console.log(id)
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
@@ -111,60 +142,60 @@ function makePager(pageNo, pages) {
 
   if (pageNo != 1 && pageNo != pages & pages > 3) {
     html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
-    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
-    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
-    html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
+    html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
+    html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
+    html = html + `<button id="${pageNo + 1}" class="btn round" value="${pageNo + 1}" onClick="Search(this.id)">${pageNo + 1}</button>`
     html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
   } else if (pageNo == 1 && pages > 3) {
-    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
-    html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
-    html = html + `<button id="pager${pageNo + 2}" class="btn round" value="${pageNo + 2}">${pageNo + 2}</button>`
+    html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
+    html = html + `<button id="${pageNo + 1}" class="btn round" value="${pageNo + 1}" onClick="Search(this.id)">${pageNo + 1}</button>`
+    html = html + `<button id="${pageNo + 2}" class="btn round" value="${pageNo + 2}" onClick="Search(this.id)">${pageNo + 2}</button>`
     html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
 
   } else if (pageNo == 1 && pages == 1) {
     html = ``
 
-    html = html + `<button id="pager1" class="btn round" value="1">1</button>`
+    html = html + `<button id="1" class="btn round" value="1" onClick="Search(this.id)">1</button>`
   } else if (pageNo == 1 && pages == 2) {
     html = ``
 
-    html = html + `<button id="pager1" class="btn round" value="1">1</button>`
-    html = html + `<button id="pager2" class="btn round" value="2">2</button>`
+    html = html + `<button id="1" class="btn round" value="1"  onClick="Search(this.id)">1</button>`
+    html = html + `<button id="2" class="btn round" value="2"  onClick="Search(this.id)">2</button>`
   } else if (pageNo == 1 && pages == 3) {
     html = ``
 
-    html = html + `<button id="pager1" class="btn round" value="1">1</button>`
-    html = html + `<button id="pager2" class="btn round" value="2">2</button>`
-    html = html + `<button id="pager3" class="btn round" value="3">3</button>`
+    html = html + `<button id="1" class="btn round" value="1"  onClick="Search(this.id)">1</button>`
+    html = html + `<button id="2" class="btn round" value="2" onClick="Search(this.id)">2</button>`
+    html = html + `<button id="3" class="btn round" value="3" onClick="Search(this.id)">3</button>`
 
   } else if (pageNo != 1 && pageNo == pages && pages > 3) {
     html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
-    html = html + `<button id="pager${pageNo - 2}" class="btn round" value="${pageNo - 2}">${pageNo - 2}</button>`
-    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
-    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+    html = html + `<button id="${pageNo - 2}" class="btn round" value="${pageNo - 2}" onClick="Search(this.id)">${pageNo - 2}</button>`
+    html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
+    html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
 
   } else if (pageNo != 1 && pageNo == pages && pages == 3) {
     html = ``
-    html = html + `<button id="pager${pageNo - 2}" class="btn round" value="${pageNo - 2}">${pageNo - 2}</button>`
-    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
-    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+    html = html + `<button id="${pageNo - 2}" class="btn round" value="${pageNo - 2}" onClick="Search(this.id)">${pageNo - 2}</button>`
+    html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
+    html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
 
   } else if (pageNo != 1 && pageNo == pages && pages == 2) {
 
     html = ``
-    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
-    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
+    html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
+    html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
 
   } else if (pageNo == 2 && pages == 3) {
     html = ``
-    html = html + `<button id="pager${pageNo - 1}" class="btn round" value="${pageNo - 1}">${pageNo - 1}</button>`
-    html = html + `<button id="pager${pageNo}" class="btn round" value="${pageNo}">${pageNo}</button>`
-    html = html + `<button id="pager${pageNo + 1}" class="btn round" value="${pageNo + 1}">${pageNo + 1}</button>`
+    html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
+    html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
+    html = html + `<button id="${pageNo + 1}" class="btn round" value="${pageNo + 1}" onClick="Search(this.id)">${pageNo + 1}</button>`
   }
 
   return html
 };
 function makeButton(i) {
-  btn = ` <button id="pager${i}" class="btn round" value="${i}">${i}</button>`
+  btn = ` <button id="${i}" class="btn round" value="${i}">${i}</button>`
   return btn;
 }
