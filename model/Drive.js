@@ -379,7 +379,7 @@ function processList(files, email) {
             url_view: file.webViewLink,
             url: "/download/" + file.id,
             mimeType: file.mimeType,
-            modifiedTime : modifiedTime
+            modifiedTime : file.modifiedTime,
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
         }
