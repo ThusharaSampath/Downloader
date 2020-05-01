@@ -5,15 +5,21 @@ $(document).ready(() => {
 });
 
 function search() {
+  
   var pageNo = 2;
   var pages = 3;
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
-      tags: $('#tags').val()
+      tags: $('#tags').val(),
+      page : 0
     },  // data to submit
     success: function (data, status, xhr) {
-      var obj = JSON.parse(data);
+      var D = JSON.parse(data);
+      var obj = D.cards;
+      pageNo = D.CPage;
+      pages = D.Pages;
+      console.log(D)
       var html = ''
       for (var key in obj) {
         html = html + makeAcard(obj[key]);
