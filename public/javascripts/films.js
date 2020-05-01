@@ -195,7 +195,4 @@ $(document).ready(() => {
   
     return html
   };
-  // Material Select Initialization
-$(document).ready(function() {
-  $('.mdb-select').materialSelect();
-  });
+  // ////////////////////////////////////////////////
