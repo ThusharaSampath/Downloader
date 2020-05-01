@@ -5,6 +5,7 @@ $(document).ready(() => {
 });
 
 function search() {
+  
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
