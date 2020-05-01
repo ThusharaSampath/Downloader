@@ -31,13 +31,13 @@ function search() {
     }
   });
 }
-function Search(id) { //search next and previous 
+function Search(ID) { //search next and previous 
 
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
       tags: $('#tags').val(),
-      page : $('#tags').val(),
+      page : ID
 
     },  // data to submit
     success: function (data, status, xhr) {
@@ -51,8 +51,8 @@ function Search(id) { //search next and previous
         html = html + makeAcard(obj[key]);
       }
       $('#rsltContainer').html(html);
-      // $('#pager').html(makePager(obj.pageNo, obj.pages));
-      console.log(id)
+      $('#pager').html(makePager(pageNo,pages));
+      
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
