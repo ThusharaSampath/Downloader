@@ -15,7 +15,6 @@ var sessionChecker = (req, res, next) => {
   var customer = new Customer();
   if (typeof req.session.db == 'undefined') {
     console.log(req.session.db);
-    document.getDB();
     req.session.db = true;
   }
 

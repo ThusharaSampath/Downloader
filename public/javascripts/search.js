@@ -5,8 +5,7 @@ $(document).ready(() => {
 });
 
 function search() {
-  pageNo=20
-  pages=25
+  
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
