@@ -232,7 +232,7 @@ function uploadFile(auth, params = {}) {
         var sum = 0;
         var p = 0;
         var name = getName(url, 'false','');
-
+        //console.log(size);
         data.on('data', chunk => {
             sum = sum + chunk.length
             progress = sum / size * 100;
@@ -365,12 +365,12 @@ function processList(files, email) {
     var ds = []
     files.forEach(file => {
         //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
-
+        console.log(file);
         var f = {
             id: file.id,
             username: email,
             name: file.name.toLowerCase(),
-            //size: file.size,
+            size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
             url: "/download/" + file.id,
