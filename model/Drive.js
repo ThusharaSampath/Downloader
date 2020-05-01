@@ -137,7 +137,7 @@ class Drive {
         var data = fs.readFileSync('data.txt');
         data = JSON.parse(data);
         var email = data[fileID].username;
-        var fileName = data[fileID].name
+        var file = data[fileID]
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
             if (typeof token == 'undefined') {
@@ -151,7 +151,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await download(oAuth2Client, fileID,fileName,res);
+            await download(oAuth2Client,file,res);
         });
         return true;
     }
@@ -301,13 +301,17 @@ async function downloadFile(auth, fileId) {
 }
 
 
-async function download(auth, fileId,fileName, dest) {
+async function download(auth, file, dest) {
+    var fileId = file.id;
+    var fileName = file.name;
+    var fileSize = file.size;
     const drive = google.drive({ version: 'v3', auth });
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
         async function (err, res) {
             dest.set({
                 'Content-Type': 'video/mp4',
-                'Content-Disposition': 'attachment; filename='+fileName
+                'Content-Disposition': 'attachment; filename='+fileName,
+                'content-length' : fileSize
             });
             await res.data
                 .on('end', () => {
