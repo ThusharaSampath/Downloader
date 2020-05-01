@@ -365,7 +365,7 @@ function processList(files, email) {
     var ds = []
     files.forEach(file => {
         //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
-        console.log(file);
+        //console.log(file);
         var f = {
             id: file.id,
             username: email,
@@ -375,6 +375,7 @@ function processList(files, email) {
             url_view: file.webViewLink,
             url: "/download/" + file.id,
             mimeType: file.mimeType,
+            modifiedTime : modifiedTime
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
         }
