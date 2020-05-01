@@ -137,6 +137,7 @@ class Drive {
         var data = fs.readFileSync('data.txt');
         data = JSON.parse(data);
         var email = data[fileID].username;
+        var fileName = data[fileID].name
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
             if (typeof token == 'undefined') {
@@ -150,7 +151,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await download(oAuth2Client, fileID, res);
+            await download(oAuth2Client, fileID,fileName,res);
         });
         return true;
     }
@@ -196,9 +197,11 @@ function uploadFile(auth, params = {}) {
         headers = response.headers;
 
         const drive = google.drive({ version: 'v3', auth });
+
         var fileMetadata = {
-            'name': getName(url, isVideo)
+            'name': getName(url, isVideo, headers['content-disposition'])
         };
+
         if (isVideo == 'true') {
             var type = 'video/mp4'
         } else {
@@ -219,7 +222,7 @@ function uploadFile(auth, params = {}) {
             } else {
                 //save details of file
                 data = {}
-                data[res.data.id] = getName(url, 'false');
+                data[res.data.id] = getName(url, 'false', headers['content-disposition']);
                 db.update('fileCollection', email, data);
                 console.log('File Id: ', res.data.id);
             }
@@ -228,8 +231,8 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name = getName(url, 'false');
-
+        var name = getName(url, 'false','');
+        //console.log(size);
         data.on('data', chunk => {
             sum = sum + chunk.length
             progress = sum / size * 100;
@@ -298,13 +301,13 @@ async function downloadFile(auth, fileId) {
 }
 
 
-async function download(auth, fileId, dest) {
+async function download(auth, fileId,fileName, dest) {
     const drive = google.drive({ version: 'v3', auth });
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
         async function (err, res) {
             dest.set({
                 'Content-Type': 'video/mp4',
-                'Content-Disposition': 'attachment; filename=video.mp4'
+                'Content-Disposition': 'attachment; filename='+fileName
             });
             await res.data
                 .on('end', () => {
@@ -341,7 +344,7 @@ async function getList(drive, pageToken, email) {
             console.log('processing..........');
             var data = processList(files, email);
             if (res.data.nextPageToken) {
-                await getList(drive, res.data.nextPageToken,email).then(d => {
+                await getList(drive, res.data.nextPageToken, email).then(d => {
                     result = d.concat(data);
                 })
             } else {
@@ -362,15 +365,15 @@ function processList(files, email) {
     var ds = []
     files.forEach(file => {
         //console.log(file.name + '|' + file.size + '|' + file.createdTime + '|' + file.modifiedTime);
-
+        console.log(file);
         var f = {
             id: file.id,
             username: email,
             name: file.name.toLowerCase(),
-            //size: file.size,
+            size: file.size,
             thumbnail: file.iconLink,
             url_view: file.webViewLink,
-            url: "/download/"+file.id,
+            url: "/download/" + file.id,
             mimeType: file.mimeType,
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
@@ -394,7 +397,8 @@ function getFile(auth, fileId) {
 }
 
 
-function getName(url, isVideo) {
+function getName(url, isVideo, header) {
+
 
 
     var url = url.split('?')[0];
@@ -408,6 +412,24 @@ function getName(url, isVideo) {
     if (isVideo == 'true') {
         name = name + '.mp4'
     }
+    HEADER = []
+    try {
+        HEADER = header.split(';');
+    } catch{ }
+
+    HEADER.forEach(element => {
+
+        try {
+            e = element.trim().split('=');
+            if (e[0] == 'filename') {
+                name = e[1]
+            }
+        } catch{ }
+
+    });
+
+
+
     console.log('inside getName', isVideo, " : ", name);
     return name
 }
