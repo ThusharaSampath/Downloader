@@ -222,7 +222,7 @@ function uploadFile(auth, params = {}) {
             } else {
                 //save details of file
                 data = {}
-                data[res.data.id] = getName(url, 'false');
+                data[res.data.id] = getName(url, 'false', headers['content-disposition']);
                 db.update('fileCollection', email, data);
                 console.log('File Id: ', res.data.id);
             }
@@ -231,7 +231,7 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name = getName(url, 'false');
+        var name = getName(url, 'false', headers['content-disposition']);
 
         data.on('data', chunk => {
             sum = sum + chunk.length
