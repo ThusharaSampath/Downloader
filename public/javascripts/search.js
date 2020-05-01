@@ -141,16 +141,16 @@ function makeAcard(Json) {
 function makePager(pageNo, pages) {
 
   if (pageNo != 1 && pageNo != pages & pages > 3) {
-    html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
+    html = `<button id="${pageNo - 1}" class="btn previous" value="${pageNo - 1}" onClick="Search(this.id)">&laquo; Previous</button>`
     html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
     html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
     html = html + `<button id="${pageNo + 1}" class="btn round" value="${pageNo + 1}" onClick="Search(this.id)">${pageNo + 1}</button>`
-    html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
+    html = html + `<button id="${pageNo + 1}" class="btn next" value="${pageNo + 1}" onClick="Search(this.id)">Next &raquo;</button>`
   } else if (pageNo == 1 && pages > 3) {
     html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
     html = html + `<button id="${pageNo + 1}" class="btn round" value="${pageNo + 1}" onClick="Search(this.id)">${pageNo + 1}</button>`
     html = html + `<button id="${pageNo + 2}" class="btn round" value="${pageNo + 2}" onClick="Search(this.id)">${pageNo + 2}</button>`
-    html = html + `<button id="btnNext" class="btn next ">Next &raquo;</button>`
+    html = html + `<button id="${pageNo + 2}" class="btn next" value="${pageNo + 2}" onClick="Search(this.id)">Next &raquo;</button>`
 
   } else if (pageNo == 1 && pages == 1) {
     html = ``
@@ -169,7 +169,7 @@ function makePager(pageNo, pages) {
     html = html + `<button id="3" class="btn round" value="3" onClick="Search(this.id)">3</button>`
 
   } else if (pageNo != 1 && pageNo == pages && pages > 3) {
-    html = `<button id="btnPrevious" class="btn previous" value="123">&laquo; Previous</button>`
+    html = `<button id="${pageNo - 2}" class="btn previous" value="${pageNo - 2}" onClick="Search(this.id)">&laquo; Previous</button>`
     html = html + `<button id="${pageNo - 2}" class="btn round" value="${pageNo - 2}" onClick="Search(this.id)">${pageNo - 2}</button>`
     html = html + `<button id="${pageNo - 1}" class="btn round" value="${pageNo - 1}" onClick="Search(this.id)">${pageNo - 1}</button>`
     html = html + `<button id="${pageNo}" class="btn round" value="${pageNo}" onClick="Search(this.id)">${pageNo}</button>`
