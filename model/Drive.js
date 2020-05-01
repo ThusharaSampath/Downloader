@@ -317,7 +317,7 @@ async function download(auth, fileId, dest) {
     return true;
 }
 
-async function listFiles(auth, email = '') {
+async function listFiles(auth, email) {
     const drive = google.drive({ version: 'v3', auth });
     var result = []
     await getList(drive, '', email).then(data => {
@@ -326,7 +326,7 @@ async function listFiles(auth, email = '') {
     return result;
 }
 
-async function getList(drive, pageToken, email = '') {
+async function getList(drive, pageToken, email) {
     var result = []
     await drive.files.list({
         //corpora: 'user',
@@ -340,7 +340,7 @@ async function getList(drive, pageToken, email = '') {
             console.log('processing..........');
             var data = processList(files, email);
             if (res.data.nextPageToken) {
-                await getList(drive, res.data.nextPageToken).then(d => {
+                await getList(drive, res.data.nextPageToken,email).then(d => {
                     result = d.concat(data);
                 })
             } else {
