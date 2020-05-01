@@ -5,7 +5,7 @@ body {
 
 
 .main-head{
-    height: 150px;
+    height: 100%;
     background: #FFF;
    
 }
@@ -123,3 +123,6 @@ svg {
 .bg{
     background-image:  linear-gradient(45deg, rgb(1, 20, 63) 0%, rgba(80,16,148,1) 44%, rgb(128, 14, 177) 100%); 
     }
+.bg-1{
+    background-color: #383838;
+    }    

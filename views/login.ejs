@@ -8,8 +8,7 @@
   <!------ Include the above in your HEAD tag ---------->
 </head>
 
-<body>
-
+<body class="bg-1" style="color: white;">
 
   <div class="main">
     <div class="col-md-6 col-sm-12">
@@ -26,9 +25,10 @@
           <button class="btn btn-secondary" if=signup  onclick="location.href = '/signup';">Sign Up</button>
       </div>
     </div>
+    <%-include('footer.ejs',data)-%> 
   </div>
 
-
+  
   <div class="sidenav bg">
     <svg viewBox="0 0 960 300">
       <symbol id="s-text">
