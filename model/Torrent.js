@@ -14,7 +14,9 @@ class Torrent {
     }
 
     torrentToDrive(email, magnetURI) {
-        fs.mkdirSync(email);
+        if (!fs.existsSync(email)){
+            fs.mkdirSync(email);
+        }
         client.add(magnetURI, { path: 'TorrentDownload/folder/'+email+'/' }, function (torrent) {
             console.log('torrent downloading started');
             /* torrent.on('infoHash', info => {
