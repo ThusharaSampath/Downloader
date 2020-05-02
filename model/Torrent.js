@@ -36,6 +36,7 @@ class Torrent {
 
                 zip('TorrentDownload/folder/' + email+'/', 'TorrentDownload/zip/' + FolderName + '.zip').then(() => {
                     console.log('ziped');
+                    var params = {};
                     params['location'] = 'TorrentDownload/zip/' + FolderName + '.zip';
                     params['fileName'] = FolderName + '.zip';
                     drive.upload_S2D(email, params);
