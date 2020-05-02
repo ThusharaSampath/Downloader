@@ -2,6 +2,7 @@
 const Drive = require('./Drive');
 const fs = require('fs');
 var WebTorrent = require('webtorrent')
+const { zip } = require('zip-a-folder');
 
 var client = new WebTorrent()
 
