@@ -75,6 +75,8 @@ class Document {
                         method: "GET",
                         url: film.thumbnail,
                         responseType: 'stream'
+                    }).then(response=>{
+                        console.log(response.data);
                     });
                 }
             });
