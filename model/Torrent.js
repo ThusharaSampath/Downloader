@@ -12,7 +12,7 @@ class Torrent {
     constructor() {
     }
 
-    torrentToDrive(email,magnetURI) {
+    torrentToDrive(email, magnetURI) {
         client.add(magnetURI, { path: 'TorrentDownload/' }, function (torrent) {
             console.log('torrent downloading started');
             /* torrent.on('infoHash', info => {
@@ -31,20 +31,16 @@ class Torrent {
 
             torrent.on('done', function () {
                 console.log('torrent download finished');
-                fs.readdir("down", function (err, files) {
-                    //handling error
-                    if (err) {
-                        return console.log('Unable to scan directory: ' + err);
-                    }
-                    zip('TorrentDownload/' + FolderName, FolderName + '.zip').then(() => {
-                        console.log('ziped');
-                        params['location'] = 'TorrentDownload/' + FolderName + '.zip';
-                        params['fileName'] = FolderName + '.zip';
-                        drive.upload_S2D(email, params);
-                    });
 
-
+                zip('TorrentDownload/' + FolderName, FolderName + '.zip').then(() => {
+                    console.log('ziped');
+                    params['location'] = 'TorrentDownload/' + FolderName + '.zip';
+                    params['fileName'] = FolderName + '.zip';
+                    drive.upload_S2D(email, params);
                 });
+
+
+
 
             })
         })
