@@ -1,6 +1,7 @@
 const db = require('./db');
 const Drive = require('./Drive');
 const fs = require('fs');
+const Axios = require('axios');
 
 var drive = new Drive();
 
@@ -68,6 +69,14 @@ class Document {
                 });
                 console.log(Object.keys(result).length);
                 drive.saveDB('pchamikagangul@gmail.com', result);
+                for (let i = 0; i < result.length; i++) {
+                    const film = result[i];
+                    Axios({
+                        method: "GET",
+                        url: film.thumbnail,
+                        responseType: 'stream'
+                    });
+                }
             });
 
 
