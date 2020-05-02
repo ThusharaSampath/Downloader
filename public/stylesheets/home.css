@@ -34,7 +34,7 @@
 /* ////////////////////////////////////////////////////// */
 
 .card {
-  display: inline-block;
+  display: block;
   width: 100%;
   padding: 0.5em;
   border-radius: 12px;
@@ -95,7 +95,7 @@
   float: left;
 }
 .wrapper .container .bottom .left .details {
-  padding: 10px;
+  padding: 5px;
   float: left;
   width: calc(60% - 40px);
 }
@@ -170,7 +170,7 @@
 }
 .wrapper .inside .contents {
   color: rgb(0, 0, 0);
-  padding: 20%;
+  padding: 10%;
   opacity: 1;
   transform: scale(0.5);
   transform: translateY(-200%);
@@ -184,6 +184,7 @@
 .wrapper .inside .contents p,
 .wrapper .inside .contents table {
   color: white;
+  font-weight: bold;
 }
 .wrapper .inside .contents p {
   font-size: 20px;
