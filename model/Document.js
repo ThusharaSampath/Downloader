@@ -21,7 +21,7 @@ class Document {
     }
 
     getDB = async function () {
-        await drive.downloadFile('pchamikagangul@gmail.com',"1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR");
+        await drive.downloadDB('pchamikagangul@gmail.com',"1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR");
     }
 
     getVideos = async function () {

@@ -12,6 +12,9 @@ var indexRouter = require('./routes/index');
 var searchRouter = require('./routes/search');
 var countRouter = require('./routes/count');
 var downloadRouter = require('./routes/download');
+var torrentRouter = require('./routes/torrent');
+
+
 
 var app = express();
 
@@ -23,6 +26,7 @@ app.use(fileUpload({
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 
 // view engine setup
@@ -56,18 +60,13 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-
-
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/search', searchRouter);
 app.use('/count', countRouter);
 app.use('/download', downloadRouter);
+app.use('/torrent', torrentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
