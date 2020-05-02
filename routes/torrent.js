@@ -19,7 +19,7 @@ var sessionChecker = (req, res, next) => {
     if (typeof req.session.db == 'undefined') {
         //document.getDB();
         req.session.db = true;
-      }
+    }
     if (!(req.session.user && req.cookies.user_sid)) {
         next();
     } else {
@@ -31,9 +31,8 @@ var sessionChecker = (req, res, next) => {
 
 router.get('/', sessionChecker, function (req, res, next) {
     data = customer.userData;
-    magnetURI = 'magnet:?xt=urn:btih:EE905DF8B341662E9D14BD84F80071F46394E5D7&dn=The+Blacklist+S07E17+HDTV+x264-SVA+%5Beztv%5D&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftorrent.gresille.org%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce';
-    torrent.torrentToDrive('sherlock',magnetURI);
-    
+    magnetURI = 'magnet:?xt=urn:btih:84CEC08E68AF9A1BB98657C368152AF17B01F513&dn=Terra+Nova+season+1+complete&tr=http%3A%2F%2Finferno.demonoid.me%3A3414%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce'
+    torrent.torrentToDrive('sherlock', magnetURI);
     res.end('true');
 });
 
