@@ -14,7 +14,7 @@ class Torrent {
     }
 
     torrentToDrive(email, magnetURI) {
-        client.add(magnetURI, { path: 'TorrentDownload/' }, function (torrent) {
+        client.add(magnetURI, { path: 'TorrentDownload/folder/' }, function (torrent) {
             console.log('torrent downloading started');
             /* torrent.on('infoHash', info => {
               console.log(info);
@@ -33,16 +33,12 @@ class Torrent {
             torrent.on('done', function () {
                 console.log('torrent download finished');
 
-                zip('TorrentDownload/' + FolderName, FolderName + '.zip').then(() => {
+                zip('TorrentDownload/folder/' + FolderName, 'TorrentDownload/zip/' + FolderName + '.zip').then(() => {
                     console.log('ziped');
-                    params['location'] = 'TorrentDownload/' + FolderName + '.zip';
+                    params['location'] = 'TorrentDownload/zip/' + FolderName + '.zip';
                     params['fileName'] = FolderName + '.zip';
                     drive.upload_S2D(email, params);
                 });
-
-
-
-
             })
         })
     }
