@@ -22,7 +22,7 @@
     <div class="container bg-3">
       <%-include('nav.ejs',data)-%>
 
-      <div class="tableWrapper bg-3">
+      <div class="tableWrapper bg-3" style="z-index: 0;">
         <div class="input-group mb-3">
           <input
             type="text"
@@ -32,7 +32,7 @@
             aria-describedby="basic-addon2"
             id="url"
           />
-          <div class="input-group-append">
+          <div class="input-group-append" style="z-index: 0;">
             <%if(data.loggedIn != true){%>
             <a
               class="btn btn-outline-secondary bg-2"

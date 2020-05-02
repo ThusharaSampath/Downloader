@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="/stylesheets/test.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/test.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!------ Include the above in your HEAD tag ---------->
+  </head>
+  <body>
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <div class="topnav" id="myTopnav">
+      <a class="nav-link" href="/"
+        >Home <span class="sr-only">(current)</span></a
+      >
+      <a class="nav-link" href="/search">Search Movies</a>
+      <a class="nav-link" href="/film">Films</a>
+      <a class="nav-link" href="/HowTo">How to Use</a>
+      <a class="nav-link" href="/addDrive">Add Drive</a>
+      <div class="nav-item dropdown float-left" style="float: right; right: 0;">
+        <div
+          class="btn nav-link nav-font"
+          id="navbarDropdownMenuLink"
+          onclick="openNav()"
+        >
+          <%= data.fname %>
+        </div>
+      </div>
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="content">
+          <a href="/addDrive">Add Drive</a>
+          <a href="#">My Drive</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+  </body>
+</html>

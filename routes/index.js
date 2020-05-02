@@ -67,7 +67,10 @@ router.get('/HowTo', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('HowTo', data);
 });
-
+router.get('/test', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  res.render('test', data);
+});
 router.get('/film', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('films', data);
