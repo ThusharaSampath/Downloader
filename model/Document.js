@@ -69,7 +69,7 @@ class Document {
                 });
                 console.log(Object.keys(result).length);
                 drive.saveDB('pchamikagangul@gmail.com', result);
-                IDS = Object.keys(result)
+                var IDS = Object.keys(result)
                 for (let i = 0; i < IDS.length; i++) {
                     const film = result[IDS[i]];
                     Axios({
