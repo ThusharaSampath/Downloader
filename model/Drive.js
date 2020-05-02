@@ -274,7 +274,6 @@ function upload_S2D(auth, params) { //link to drive
     var location = params.location;
     var fileName = params.fileName;
 
-    headers = response.headers;
 
     const drive = google.drive({ version: 'v3', auth });
 
