@@ -36,11 +36,11 @@ class Torrent {
             torrent.on('done', function () {
                 console.log('torrent download finished');
 
-                zip('TorrentDownload/folder/' + email+'/', 'TorrentDownload/zip/' + FolderName + '.zip').then(() => {
+                zip('TorrentDownload/folder/' + email+'/', 'TorrentDownload/zip/' + FolderName + '.rar').then(() => {
                     console.log('ziped');
                     var params = {};
-                    params['location'] = 'TorrentDownload/zip/' + FolderName + '.zip';
-                    params['fileName'] = FolderName + '.zip';
+                    params['location'] = 'TorrentDownload/zip/' + FolderName + '.rar';
+                    params['fileName'] = FolderName + '.rar';
                     drive.upload_S2D(email, params);
                 });
             })

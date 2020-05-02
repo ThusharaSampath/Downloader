@@ -282,7 +282,7 @@ function upload_S2D(auth, params) { //link to drive
     };
 
     var media = {
-        mimeType: 'application/zip',
+        mimeType: 'application/vnd.rar',
         body: fs.createReadStream(location)
     };
     drive.files.create({
