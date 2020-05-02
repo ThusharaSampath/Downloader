@@ -14,7 +14,8 @@ class Torrent {
     }
 
     torrentToDrive(email, magnetURI) {
-        client.add(magnetURI, { path: 'TorrentDownload/folder/' }, function (torrent) {
+        fs.mkdirSync(email);
+        client.add(magnetURI, { path: 'TorrentDownload/folder/'+email+'/' }, function (torrent) {
             console.log('torrent downloading started');
             /* torrent.on('infoHash', info => {
               console.log(info);
@@ -33,7 +34,7 @@ class Torrent {
             torrent.on('done', function () {
                 console.log('torrent download finished');
 
-                zip('TorrentDownload/folder/' + FolderName, 'TorrentDownload/zip/' + FolderName + '.zip').then(() => {
+                zip('TorrentDownload/folder/' + email+'/', 'TorrentDownload/zip/' + FolderName + '.zip').then(() => {
                     console.log('ziped');
                     params['location'] = 'TorrentDownload/zip/' + FolderName + '.zip';
                     params['fileName'] = FolderName + '.zip';
