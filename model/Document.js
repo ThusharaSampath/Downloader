@@ -1,6 +1,7 @@
 const db = require('./db');
 const Drive = require('./Drive');
 const fs = require('fs');
+const Axios = require('axios');
 
 var drive = new Drive();
 
@@ -20,7 +21,7 @@ class Document {
     }
 
     getDB = async function () {
-        await drive.downloadFile('pchamikagangul@gmail.com',"1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR");
+        await drive.downloadDB('pchamikagangul@gmail.com',"1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR");
     }
 
     getVideos = async function () {
@@ -68,6 +69,15 @@ class Document {
                 });
                 console.log(Object.keys(result).length);
                 drive.saveDB('pchamikagangul@gmail.com', result);
+                var IDS = Object.keys(result)
+                for (let i = 0; i < IDS.length; i++) {
+                    const film = result[IDS[i]];
+                    Axios({
+                        method: "GET",
+                        url: film.thumbnail,
+                        responseType: 'stream'
+                    });
+                }
             });
 
 

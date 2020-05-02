@@ -113,7 +113,7 @@ class Drive {
         return result;
     }
 
-    async downloadFile(email, fileID) {
+    async downloadDB(email, fileID) {
         var result = []
         await db.getToken(email).then(async token => {
             var content = fs.readFileSync('config/credentials.json');
@@ -128,7 +128,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await downloadFile(oAuth2Client, fileID);
+            await downloadDB(oAuth2Client, fileID);
         });
         return true;
     }
@@ -151,7 +151,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await download(oAuth2Client,file,res);
+            await download(oAuth2Client, file, res);
         });
         return true;
     }
@@ -164,8 +164,28 @@ class Drive {
             // Authorize a client with credentials, then call the Google Drive API.
             //authorize(JSON.parse(content), email, listFiles);
             //authorize(JSON.parse(content),email, getFile);
-            authorize(JSON.parse(content), token, uploadFile, params);
+            authorize(JSON.parse(content), token, upload, params);
         });
+    }
+
+    async upload_S2D(email, params) {
+
+        await db.getToken(email).then(async token => {
+            var content = fs.readFileSync('config/credentials.json');
+            if (typeof token == 'undefined') {
+                return [];
+            }
+
+            const { client_secret, client_id, redirect_uris } = JSON.parse(content).installed;
+            const oAuth2Client = new google.auth.OAuth2(
+                client_id, client_secret, redirect_uris[0]);
+
+            // Check if we have previously stored a token.
+
+            oAuth2Client.setCredentials(token);
+            await upload_S2D(oAuth2Client, params);
+        });
+
     }
 }
 
@@ -181,7 +201,7 @@ function authorize(credentials, token, callback, params = {}) {
 
 }
 
-function uploadFile(auth, params = {}) {
+function upload(auth, params = {}) { //link to drive
     var url = params.url
     var isVideo = params.isVideo;
     var email = params.email;
@@ -231,7 +251,7 @@ function uploadFile(auth, params = {}) {
         var size = headers['content-length'];
         var sum = 0;
         var p = 0;
-        var name = getName(url, 'false','');
+        var name = getName(url, 'false', '');
         //console.log(size);
         data.on('data', chunk => {
             sum = sum + chunk.length
@@ -249,7 +269,52 @@ function uploadFile(auth, params = {}) {
 
 }
 
-async function saveDB(auth, data = {}) {
+function upload_S2D(auth, params) { //link to drive
+
+    var location = params.location;
+    var fileName = params.fileName;
+
+
+    const drive = google.drive({ version: 'v3', auth });
+
+    var fileMetadata = {
+        'name': fileName
+    };
+
+    var media = {
+        mimeType: 'application/zip',
+        body: fs.createReadStream(location)
+    };
+    drive.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id'
+    }, function (err, res) {
+        if (err) {
+            // Handle error
+            console.log(err);
+        } else {
+            console.log('File Id: ', res.data.id);
+        }
+    });
+
+    /* var size = headers['content-length'];
+    var sum = 0;
+    var p = 0;
+
+    data.on('data', chunk => {
+        sum = sum + chunk.length
+        progress = sum / size * 100;
+        if (progress >= p) {
+            p = p + 1
+            chat.to(params.email, 'status', { progress: progress, fileName: name });
+            console.log(progress, name);
+        }
+    }); */
+
+}
+
+async function saveDB(auth, data = {}) { //update DB on drive
 
     fs.writeFileSync('data.txt', JSON.stringify(data));
     var id = "1XaBZpjIFFb1vCB0K7-s-jZpAKflyJCDR"
@@ -282,7 +347,7 @@ async function saveDB(auth, data = {}) {
         }
     }); */
 }
-async function downloadFile(auth, fileId) {
+async function downloadDB(auth, fileId) {   //download to server from drive
     const drive = google.drive({ version: 'v3', auth });
     var dest = fs.createWriteStream('data.txt');
 
@@ -301,7 +366,7 @@ async function downloadFile(auth, fileId) {
 }
 
 
-async function download(auth, file, dest) {
+async function download(auth, file, dest) { //download to client from drive
     var fileId = file.id;
     var fileName = file.name;
     var fileSize = file.size;
@@ -310,8 +375,8 @@ async function download(auth, file, dest) {
         async function (err, res) {
             dest.set({
                 'Content-Type': 'video/mp4',
-                'Content-Disposition': 'attachment; filename='+fileName,
-                'content-length' : fileSize
+                'Content-Disposition': 'attachment; filename=' + fileName,
+                'content-length': fileSize
             });
             await res.data
                 .on('end', () => {
@@ -379,7 +444,7 @@ function processList(files, email) {
             url_view: file.webViewLink,
             url: "/download/" + file.id,
             mimeType: file.mimeType,
-            modifiedTime : file.modifiedTime,
+            modifiedTime: file.modifiedTime,
             //email: file.owners[0].emailAddress,
             //owner: file.owners[0].displayName
         }
@@ -397,7 +462,7 @@ function getFile(auth, fileId) {
     const drive = google.drive({ version: 'v3', auth });
     drive.files.get({ fileId: fileId, fields: '*' }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
-        console.log(res.data); c
+        console.log(res.data);
     });
 }
 
