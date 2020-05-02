@@ -69,8 +69,9 @@ class Document {
                 });
                 console.log(Object.keys(result).length);
                 drive.saveDB('pchamikagangul@gmail.com', result);
-                for (let i = 0; i < result.length; i++) {
-                    const film = result[i];
+                IDS = Object.keys(result)
+                for (let i = 0; i < IDS.length; i++) {
+                    const film = result[IDS[i]];
                     Axios({
                         method: "GET",
                         url: film.thumbnail,
