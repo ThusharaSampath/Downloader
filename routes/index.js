@@ -157,8 +157,7 @@ router.post('/logout', (req, res) => {
 });
 
 
-function getName(url) {
-
+function getName(url, isVideo=false, header='') {
   var url = url.split('?')[0];
 
   var arr = url.split('/');
@@ -166,6 +165,29 @@ function getName(url) {
 
   arr = name_.split('\\');
   name = arr[arr.length - 1];
+
+  if (isVideo == 'true') {
+      name = name + '.mp4'
+  }
+  HEADER = []
+  try {
+      HEADER = header.split(';');
+  } catch{ }
+
+  HEADER.forEach(element => {
+
+      try {
+          e = element.trim().split('=');
+          if (e[0] == 'filename') {
+              name = e[1]
+          }
+      } catch{ }
+
+  });
+
+
+
+  console.log('inside getName', isVideo, " : ", name);
   return name
 }
 
