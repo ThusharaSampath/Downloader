@@ -79,6 +79,10 @@ router.get('/film', sessionChecker, function (req, res, next) {
   data = customer.userData;
   res.render('films', data);
 });
+router.get('/settings', sessionChecker, function (req, res, next) {
+  data = customer.userData;
+  res.render('settings', data);
+});
 
 
 router.post('/addDrive', sessionChecker, function (req, res, next) {

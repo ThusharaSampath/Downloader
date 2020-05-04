@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Downloader</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="/stylesheets/settings.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/settings.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+</head>
+
+<body class="bg-1">
+    <div class="container bg-3">
+        <%-include('nav.ejs',data)-%>
+
+        <div class="tableWrapper">
+
+            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Token" aria-label="Recipient's username"
+                    aria-describedby="basic-addon2" id="token" />
+                <div class="input-group-append">
+                    <%if(data.loggedIn != true){%>
+                    <a class="btn btn-outline-secondary bg-2" type="button" href="/login" style="z-index: 0;"><i
+                            class="fa fa-download"></i> Submit</a>
+                    <%}else{%>
+                    <button class="btn btn-outline-secondary bg-2" type="button" onclick="addDrive()"
+                        style="z-index: 0;">
+                        <i class="fa fa-sign-in"></i> Submit
+                    </button>
+                    <%}%>
+                </div>    
+                
+            </div>
+        
+            <div>
+            <%if(data.loggedIn != true){%>
+                    <a class="btn btn-outline-secondary bg-2" type="button" href="/login"
+                        style="z-index: 0; width: 90%; color: white;"><i class="fa fa-download"></i> Generate A
+                        Token</a>
+                    <%}else{%>
+                    <a href="<%=url%>" target="_blank" type="button"
+                        class="btn btn-primary btn-rounded btn-lg btn-block bg-2" style="margin-top: 5vh;">
+
+                        <span class="glyphicon glyphicon-plus-sign"><i class="fa fa-key" aria-hidden="true"></i>
+                            Generate A
+                            Token
+                        </span>
+
+
+                    </a>
+                    <%}%>
+            </div>
+
+    
+        </div>
+
+    </div>
+</body>
+
+<%-include('footer.ejs',data)-%>
+
+</html>
+
+</html>

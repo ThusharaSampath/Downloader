@@ -50,11 +50,16 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div id="content">
-    <a href="/addDrive">Download to Drive </a>
     <a href="#">My Drive</a>
-    <a href="/logout">Logout</a>
+    <a href="/addDrive">Download to Drive </a>   
+    <%if(data.loggedIn == true){%>
+    <a href="/settings">Settings</a>  
+    <%}%>
     <a href="/login">Log in</a>
     <a href="/signUp">Sign Up</a>
+    <%if(data.loggedIn == true){%>
+    <a href="/logout">Logout</a>
+    <%}%>
   </div>
 </div>
 </div>
