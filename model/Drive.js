@@ -132,7 +132,7 @@ class Drive {
         });
         return true;
     }
-    async download(fileID, res) {
+    async download(fileID, res,watch=false) {
         var result = []
         var data = fs.readFileSync('data.txt');
         data = JSON.parse(data);
@@ -151,7 +151,7 @@ class Drive {
             // Check if we have previously stored a token.
 
             oAuth2Client.setCredentials(token);
-            await download(oAuth2Client, file, res);
+            await download(oAuth2Client, file, res,watch);
         });
         return true;
     }
@@ -366,18 +366,25 @@ async function downloadDB(auth, fileId) {   //download to server from drive
 }
 
 
-async function download(auth, file, dest) { //download to client from drive
+async function download(auth, file, dest, watch = false) { //download to client from drive
     var fileId = file.id;
     var fileName = file.name;
     var fileSize = file.size;
     const drive = google.drive({ version: 'v3', auth });
     await drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
         async function (err, res) {
-            dest.set({
-                'Content-Type': 'video/mp4',
-                'Content-Disposition': 'attachment; filename=' + fileName,
-                'content-length': fileSize
-            });
+            if (watch == false) {
+                dest.set({
+                    'Content-Type': 'video/mp4',
+                    'Content-Disposition': 'attachment; filename=' + fileName,
+                    'content-length': fileSize
+                });
+            } else {
+                dest.set({
+                    'Content-Type': 'video/mp4'
+                });
+            }
+
             await res.data
                 .on('end', () => {
                     console.log('downloded');

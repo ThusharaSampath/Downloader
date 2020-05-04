@@ -6,17 +6,17 @@ $(document).ready(() => {
 });
 
 function search() {
-  
+
   $.ajax('/search', {
     type: 'POST',  // http method
     data: {
       tags: $('#tags').val(),
-      page : 0
+      page: 0
     },  // data to submit
     success: function (data, status, xhr) {
       var D = JSON.parse(data);
       var obj = D.cards;
-      pageNo = D.CPage+1;
+      pageNo = D.CPage + 1;
       pages = D.Pages;
       console.log(D)
       var html = ''
@@ -24,8 +24,8 @@ function search() {
         html = html + makeAcard(obj[key]);
       }
       $('#rsltContainer').html(html);
-      $('#pager').html(makePager(pageNo,pages));
-      
+      $('#pager').html(makePager(pageNo, pages));
+
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
@@ -38,13 +38,13 @@ function Search(ID) { //search next and previous
     type: 'POST',  // http method
     data: {
       tags: $('#tags').val(),
-      page : ID-1
+      page: ID - 1
 
     },  // data to submit
     success: function (data, status, xhr) {
       var D = JSON.parse(data);
       var obj = D.cards;
-      pageNo = D.CPage +1;
+      pageNo = D.CPage + 1;
       pages = D.Pages;
       console.log(D)
       var html = ''
@@ -52,8 +52,8 @@ function Search(ID) { //search next and previous
         html = html + makeAcard(obj[key]);
       }
       $('#rsltContainer').html(html);
-      $('#pager').html(makePager(pageNo,pages));
-      
+      $('#pager').html(makePager(pageNo, pages));
+
     },
     error: function (jqXhr, textStatus, errorMessage) {
       alert(errorMessage);
@@ -130,7 +130,10 @@ function makeAcard(Json) {
           <a class="btn btn-secondary card__label" target='_blank' href="${Json.url}" onClick="down('${Json.id}')"><i class="fa fa-download"></i> Download</a>
         </h4>
         <h4 class="card__ability">
-          <a class="btn btn-secondary card__label" target='_blank' href="${Json.url_view}"  onClick="view('${Json.id}')"><i class="fa fa-eye"></i>Watch</a>
+          <a class="btn btn-secondary card__label" target='_blank' href=/download/watch/${Json.id}><i class="fa fa-eye"></i>Watch</a>
+        </h4>
+        <h4 class="card__ability">
+          <a class="btn btn-secondary card__label" target='hiddentarget' href=/download/drive/${Json.id} ><i class="fa fa-eye"></i>Copy</a>
         </h4>
       </div>
     </figcaption>
