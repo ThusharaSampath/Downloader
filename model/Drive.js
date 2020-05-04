@@ -273,6 +273,7 @@ function upload_S2D(auth, params) { //link to drive
 
     var location = params.location;
     var fileName = params.fileName;
+    var mimeType = params.mimeType;
 
 
     const drive = google.drive({ version: 'v3', auth });
@@ -282,7 +283,7 @@ function upload_S2D(auth, params) { //link to drive
     };
 
     var media = {
-        mimeType: 'application/zip',
+        mimeType: mimeType,
         body: fs.createReadStream(location)
     };
     drive.files.create({
