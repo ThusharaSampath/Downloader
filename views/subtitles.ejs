@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="/stylesheets/home.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/home.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!------ Include the above in your HEAD tag ---------->
+  </head>
+
+  <body class="bg-1">
+    <div class="container bg-3">
+      <%-include('nav.ejs',data)-%>
+
+      <div class="tableWrapper bg-3" style="z-index: 0;">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Movie Name"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            id="url"
+          />
+          <div class="input-group-append" style="z-index: 0;">
+            <%if(data.loggedIn != true){%>
+            <a
+              class="btn btn-outline-secondary bg-2"
+              type="button"
+              href="/login"
+              style="z-index: 0;"
+              ><i class="fa fa-search"></i>Search</a
+            >
+            <%}else if(typeof data.token == 'undefined'){%>
+            <a
+              class="btn btn-outline-secondary bg-2"
+              type="button"
+              href="/addDrive"
+              ><i class="fa fa-search"></i>Search</a
+            >
+            <%}else{%>
+            <button
+              class="btn btn-outline-secondary bg-2"
+              type="button"
+              onclick="download()"
+            >
+              <i class="fa fa-download"></i> Download
+            </button>
+            <%}%>
+          </div>
+        </div>
+
+
+        <div id="progress_wrapper"></div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <h4 style="color: antiquewhite;">New Featured</h4>
+          <div class="wrapper" style="background: rgb(22, 6, 6);">
+            <div class="container">
+              <div
+                class="top"
+                style="
+                  background-image: url(https://cps-static.rovicorp.com/2/Open/Sony_Pictures_Television/Program/27695740/_derived_jpg_q90_500x500_m0/BADBOYSFORLIFE_PA_2x3_6_1584523611756_5.jpg);
+                "
+              ></div>
+              <div class="bottom">
+                <div class="left">
+                  <div class="details">
+                    <h5 style="font-weight: bold;">Bad Boys For Life</h5>
+                    <h7>2020</h7>
+                  </div>
+                  <div class="buy">
+                    <button class="btn btn-secondry">Download</button>
+                    <button class="btn btn-secondry">Copy</button>
+                    <button class="btn btn-secondry">Subtitle</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inside" style="background: #535252;">
+              <div class="icon"><i class="fa fa-info"></i></div>
+              <div class="contents">
+                <table>
+                  <span style="font-weight: bold; color: black;">
+                    Marcus and Mike have to confront new issues (career changes and midlife crises), as they join the newly created elite team AMMO of the Miami police department to take down the ruthless Armando Armas, the vicious leader of a Miami drug cartel.
+                  </span>
+                  <tr>
+                    <th>IMDb</th>
+                    <th>6.8</th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="btncontiner" style="position: relative;">
+        <a class="btn button" href="/film">
+          Hey, we have huge movie collection!
+        </a>
+      </div>
+    </div>
+  </body>
+  <footer><%-include('footer.ejs',data)-%></footer>
+</html>
