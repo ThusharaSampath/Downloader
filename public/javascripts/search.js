@@ -130,7 +130,7 @@ function makeAcard(Json) {
           <a class="btn btn-secondary card__label" target='_blank' href="${Json.url}" onClick="down('${Json.id}')"><i class="fa fa-download"></i> Download</a>
         </h4>
         <h4 class="card__ability">
-          <a class="btn btn-secondary card__label" target='_blank' href=/download/watch/${Json.id}><i class="fa fa-eye"></i>Watch</a>
+          <a class="btn btn-secondary card__label" target='_blank' href='/download/watch/${Json.id}' onClick="view('${Json.id}')"><i class="fa fa-eye"></i>Watch</a>
         </h4>
         <h4 class="card__ability">
           <a class="btn btn-secondary card__label" target='hiddentarget' href=/download/drive/${Json.id} ><i class="fa fa-eye"></i>Copy</a>

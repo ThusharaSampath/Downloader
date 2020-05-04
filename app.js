@@ -13,6 +13,7 @@ var searchRouter = require('./routes/search');
 var countRouter = require('./routes/count');
 var downloadRouter = require('./routes/download');
 var torrentRouter = require('./routes/torrent');
+var controlRouter = require('./routes/control');
 
 
 
@@ -67,6 +68,7 @@ app.use('/search', searchRouter);
 app.use('/count', countRouter);
 app.use('/download', downloadRouter);
 app.use('/torrent', torrentRouter);
+app.use('/control', controlRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
