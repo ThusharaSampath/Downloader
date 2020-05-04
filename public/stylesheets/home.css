@@ -24,19 +24,20 @@
 }
 
 .bg-3 {
-  margin: auto;
+  
+
   margin-top: 5%;
-  padding: 5px;
   align-items: center;
   height: 50%;
-  width: 98%;
+  width: 100%;
 }
 /* ////////////////////////////////////////////////////// */
 
 .card {
+  position: relative;
   margin-top: 2px;
   display: inline-block;
-  width: 100%;
+  width: 95%;
   padding: 0.5em;
   border-radius: 12px;
   background: rgb(80, 79, 79);
@@ -55,6 +56,21 @@
   box-shadow: 0;
   transform: scale(0.95);
   transition: box-shadow 0.5s, transform 0.5s;
+}
+@media screen and (max-width: 750px) {
+  .wrapper {
+    float: left;
+    width:250px;
+    height: 400px;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow 0.5s, transform 0.5s;
+  }
 }
 .wrapper:hover {
   transform: scale(1);

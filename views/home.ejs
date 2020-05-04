@@ -1,62 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link href="/stylesheets/home.css" rel="stylesheet" id="bootstrap-css" />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="/javascripts/home.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!------ Include the above in your HEAD tag ---------->
-  </head>
 
-  <body class="bg-1">
-    <div class="container bg-3">
-      <%-include('nav.ejs',data)-%>
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="/stylesheets/home.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="/javascripts/home.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!------ Include the above in your HEAD tag ---------->
+</head>
 
-      <div class="tableWrapper bg-3" style="z-index: 0;">
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Direct Link"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-            id="url"
-          />
-          <div class="input-group-append" style="z-index: 0;">
-            <%if(data.loggedIn != true){%>
-            <a
-              class="btn btn-outline-secondary bg-2"
-              type="button"
-              href="/login"
-              style="z-index: 0;"
-              ><i class="fa fa-download"></i> Download</a
-            >
-            <%}else if(typeof data.token == 'undefined'){%>
-            <a
-              class="btn btn-outline-secondary bg-2"
-              type="button"
-              href="/addDrive"
-              ><i class="fa fa-download"></i> Download</a
-            >
-            <%}else{%>
-            <button
-              class="btn btn-outline-secondary bg-2"
-              type="button"
-              onclick="download()"
-            >
-              <i class="fa fa-download"></i> Download
-            </button>
-            <%}%>
+<body class="bg-1">
+  <div class="container bg-3">
+    <%-include('nav.ejs',data)-%>
+
+    <div class="tableWrapper bg-3" style="z-index: 0;">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Direct Link" aria-label="Recipient's username"
+          aria-describedby="basic-addon2" id="url" />
+        <div class="input-group-append" style="z-index: 0;">
+          <%if(data.loggedIn != true){%>
+          <a class="btn btn-outline-secondary bg-2" type="button" href="/login" style="z-index: 0;"><i
+              class="fa fa-download"></i> Download</a>
+          <%}else if(typeof data.token == 'undefined'){%>
+          <a class="btn btn-outline-secondary bg-2" type="button" href="/addDrive"><i class="fa fa-download"></i>
+            Download</a>
+          <%}else{%>
+          <button class="btn btn-outline-secondary bg-2" type="button" onclick="download()">
+            <i class="fa fa-download"></i> Download
+          </button>
+          <%}%>
           </div>
         </div>
         <div class="form-check">
@@ -76,6 +51,7 @@
 
         <div id="progress_wrapper"></div>
       </div>
+    
       <div class="row">
         <div class="card">
           <h4 style="color: antiquewhite;">New Featured</h4>
@@ -373,8 +349,10 @@
         <a class="btn button" href="/film">
           Hey, we have huge movie collection!
         </a>
-      </div>
     </div>
+  </div>
+  
   </body>
   <footer><%-include('footer.ejs',data)-%></footer>
+
 </html>
