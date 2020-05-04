@@ -30,11 +30,11 @@
                     aria-describedby="basic-addon2" id="token" />
                 <div class="input-group-append">
                     <%if(data.loggedIn != true){%>
-                    <a class="btn btn-outline-secondary bg-2" type="button" href="/login" style="z-index: 0;"><i
+                    <a class="btn btn-outline-secondary bg-2" type="button" href="/login" style="z-index: 0;color: white;" ><i
                             class="fa fa-download"></i> Submit</a>
                     <%}else{%>
                     <button class="btn btn-outline-secondary bg-2" type="button" onclick="addDrive()"
-                        style="z-index: 0;">
+                        style="z-index: 0;" style="color: white;">
                         <i class="fa fa-sign-in"></i> Submit
                     </button>
                     <%}%>
@@ -45,13 +45,13 @@
             <div>
             <%if(data.loggedIn != true){%>
                     <a class="btn btn-outline-secondary bg-2" type="button" href="/login"
-                        style="z-index: 0; width: 90%; color: white;"><i class="fa fa-download"></i> Generate A
+                        style="z-index: 0; width: 90%; color: white;"><i class="fa fa-download" ></i> Generate A
                         Token</a>
                     <%}else{%>
                     <a href="<%=url%>" target="_blank" type="button"
                         class="btn btn-primary btn-rounded btn-lg btn-block bg-2" style="margin-top: 5vh;">
 
-                        <span class="glyphicon glyphicon-plus-sign"><i class="fa fa-key" aria-hidden="true"></i>
+                        <span class="glyphicon glyphicon-plus-sign"><i class="fa fa-key" aria-hidden="true" style="color: white;"></i>
                             Generate A
                             Token
                         </span>
@@ -66,9 +66,26 @@
             <h5 style="color: white;">You can remove current drive from the Dounload2Drive.com here </h5>  
             <hr>
             <button class="btn btn-outline-secondary bg-2" type="button" onclick=""
-                        style="z-index: 0;">
-                        <i class="fa fa-delete"></i> Remove Drive
+                        style="z-index: 0;color: white;" >
+                        <i class="fa fa-remove"></i> Remove Drive
             </button>
+        </div>
+        <div class="card">
+            <h5 style="color: white;">You can change current name here </h5>  
+            <hr>
+            <input type="text" class="form-control" placeholder="New Name" aria-label="Recipient's username"
+                    aria-describedby="basic-addon2" id="newName" />
+                    <hr>
+            <button class="btn btn-outline-secondary bg-2" type="button" onclick=""
+                        style="z-index: 0;color: white;" >
+                        <i class="fa fa-plus"></i> Change The Name
+            </button>
+        </div>
+        </div>
+        <div class="card">
+            <h5 style="color: white;">Chamika can Any other settings here </h5>  
+            <hr>
+            
         </div>
         </div>
 
