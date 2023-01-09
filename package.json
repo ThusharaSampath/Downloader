@@ -16,7 +16,7 @@
     "express-fileupload": "^1.1.6",
     "express-session": "^1.17.0",
     "file-type": "^14.1.4",
-    "firebase-admin": "^8.10.0",
+    "firebase-admin": "^11.4.1",
     "formidable": "^1.2.2",
     "fs": "0.0.1-security",
     "googleapis": "^48.0.0",
